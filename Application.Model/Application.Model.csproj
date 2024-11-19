@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4D4923F5-548C-4D13-859D-7F5E9699FACD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Application.Model</RootNamespace>
+    <AssemblyName>Application.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\ActionLog.cs" />
+    <Compile Include="Models\Feedback.cs" />
+    <Compile Include="Models\PurchaseOrderItem.cs" />
+    <Compile Include="Models\PurchaseOrder.cs" />
+    <Compile Include="Models\RestaurantTable.cs" />
+    <Compile Include="Models\Testimony.cs" />
+    <Compile Include="Models\AboutUs.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Branch.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\ELMAH_Error.cs" />
+    <Compile Include="Models\ItemType.cs" />
+    <Compile Include="Models\Lookup.cs" />
+    <Compile Include="Models\Mapping\ActionLogMap.cs" />
+    <Compile Include="Models\Mapping\CityMap.cs" />
+    <Compile Include="Models\Mapping\BranchMap.cs" />
+    <Compile Include="Models\Mapping\CategoryMap.cs" />
+    <Compile Include="Models\Mapping\ELMAH_ErrorMap.cs" />
+    <Compile Include="Models\Mapping\ItemTypeMap.cs" />
+    <Compile Include="Models\Mapping\LookupMap.cs" />
+    <Compile Include="Models\Mapping\OrderItemMap.cs" />
+    <Compile Include="Models\Mapping\OrderMap.cs" />
+    <Compile Include="Models\Mapping\ProductImageMap.cs" />
+    <Compile Include="Models\Mapping\ProductLowStockMap.cs" />
+    <Compile Include="Models\Mapping\ProductMap.cs" />
+    <Compile Include="Models\Mapping\ProductStockManualUpdateHistoryMap.cs" />
+    <Compile Include="Models\Mapping\ProductStockMap.cs" />
+    <Compile Include="Models\Mapping\PurchaseMap.cs" />
+    <Compile Include="Models\Mapping\PurchaseProductStockMap.cs" />
+    <Compile Include="Models\Mapping\RoleMap.cs" />
+    <Compile Include="Models\Mapping\SettingMap.cs" />
+    <Compile Include="Models\Mapping\SliderImageMap.cs" />
+    <Compile Include="Models\Mapping\StockLocationMap.cs" />
+    <Compile Include="Models\Mapping\SupplierMap.cs" />
+    <Compile Include="Models\Mapping\SyncHistoryMap.cs" />
+    <Compile Include="Models\Mapping\UserMap.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderItem.cs" />
+    <Compile Include="Models\Promotions.cs" />
+    <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\SupplierPayment.cs" />
+    <Compile Include="Models\OrderPayment.cs" />
+    <Compile Include="Models\OrderStatus.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductImage.cs" />
+    <Compile Include="Models\ProductLowStock.cs" />
+    <Compile Include="Models\ProductStock.cs" />
+    <Compile Include="Models\ProductStockManualUpdateHistory.cs" />
+    <Compile Include="Models\Purchase.cs" />
+    <Compile Include="Models\PurchaseProductStock.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Setting.cs" />
+    <Compile Include="Models\SliderImage.cs" />
+    <Compile Include="Models\StockLocation.cs" />
+    <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\SyncHistory.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

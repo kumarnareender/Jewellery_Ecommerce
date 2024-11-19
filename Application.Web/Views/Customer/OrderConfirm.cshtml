@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Order Confirm";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="text-align: center;margin-top: 50px;">
+            <h2>Your order has been confirmed!</h2>
+            <br />
+            <h1>Your order ID: <span style="color:blue; font-weight:600;" id="orderCode"></span></h1>
+            <div style="margin-top:20px; font-size:16px; text-decoration: underline;">
+                <a href="/Customer/OrderList">View Your All Orders</a>
+            </div>
+        </div>        
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderCode = urlParams.get('orderCode');
+
+    document.getElementById("orderCode").innerHTML = orderCode;
+
+</script>

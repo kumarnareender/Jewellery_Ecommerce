@@ -1,0 +1,265 @@
+﻿@{
+    ViewBag.Title = "Edit Product";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+
+<div class="container11">
+    <div class="page-banner no-subtitle">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Edit Product</h2>
+            </div>
+            <div class="col-md-6">
+                <ul class="breadcrumbs">
+                    <li><a href="#">Products</a></li>
+                    <li>Edit Product</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <form name="myForm" novalidate>
+        <div ng-controller="editPostCtrl" class="form-horizontal">
+
+            <div>
+                <div id="general-container">
+
+                    <div class="section-container">
+                        <div class="s-title">
+                            <span class="product-post-section-text">Store Branch</span>
+                        </div>
+                        <div class="s-body">
+
+                            <div class="row form-group">
+                                <div class="col-sm-5">
+                                    <div class="field-caption control-label">Select Branch</div>
+                                    <select id="branch" ng-model="branchId" name="branchId" class="form-control form-group-margin" ng-options="branch.Id as branch.Name for branch in branchList">
+                                        <option value="">Select Branch</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="section-container">
+                        <div class="s-title">
+                            <span class="product-post-section-text">Product Information</span>
+                        </div>
+                        <div class="s-body">
+
+                            <div class="row form-group">
+                                <div class="col-sm-5">
+                                    <div class="field-caption control-label">Product Barcode</div>
+                                    <input name="Barcode" ng-model="barcode" maxlength="200" placeholder="Barcode" class="form-control ctl-input">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-sm-12">
+                                    <div class="field-caption control-label">Title</div>
+                                    <input id="title" name="title" ng-model="title" maxlength="200" placeholder="Product Title" class="form-control ctl-input">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-4">
+                                    <div class="field-caption control-label">Short Code</div>
+                                    <input id="shortCode" name="shortCode" ng-model="shortCode" maxlength="50" placeholder="Short Code" class="form-control ctl-input">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-sm-12">
+                                    <div class="field-caption control-label">Description / Specification</div>
+                                    <textarea id="description" name="description" ng-model="description" placeholder="Product Description" class="form-control ctl-input" rows="7"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-sm-5">
+                                    <div class="field-caption control-label">Select Supplier</div>                                    
+                                    <select ng-model="supplierId" name="supplierId" class="form-control form-group-margin" ng-options="supplier.Id as supplier.Name for supplier in supplierList">
+                                        <option value="">Select Supplier</option>
+                                    </select>                                 
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-sm-12">
+                                    <div class="field-caption control-label">Weight / Capacity</div>
+                                    <input name="weight" ng-model="weight" type="number" style="width:100px; float:left;" placeholder="Weight" class="form-control ctl-input">
+                                    <select ng-model="unit" name="unit" class="form-control ctl-input form-group-margin" style="width:100px; margin-left:10px;">
+                                        <option selected="selected" value="gm">gm</option>
+                                        <option value="kg">kg</option>
+                                        <option value="lt">lt</option>
+                                        <option value="ml">ml</option>
+                                        <option value="pc">pc</option>
+                                        <option value="GB">GB</option>
+                                    </select>    
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-sm-12">
+                                    <div class="field-caption control-label">Quantity</div>
+                                    <input name="quantity" ng-model="quantity" type="number" style="width:100px; float:left;" class="form-control ctl-input">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-sm-12">
+                                    <div class="field-caption control-label">Low Stock Alert</div>
+                                    <input name="lowStockAlert" ng-model="lowStockAlert" type="number" style="width:100px; float:left;" class="form-control ctl-input">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-sm-4">
+                                    <div class="field-caption control-label">Item / Brand Type</div>
+                                    <select ng-model="itemTypeId" name="itemTypeId" class="form-control form-group-margin" ng-options="itemType.Id as itemType.Name for itemType in itemTypeList">
+                                        <option value="">Select Item Type</option>
+                                    </select>  
+                                </div>
+                            </div>
+
+                            <div class="row form-group" style="margin-bottom:0;">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="field-caption control-label">Expire Date / Warranty Date</div>
+                                            <div class="input-group">
+                                                <input class="form-control date-picker" id="expireDate" ng-model="expireDate" name="expireDate" type="text" data-date-format="yyyy-mm-dd">
+                                                <span class="calendar-control input-group-addon">
+                                                    <i class="fa fa-calendar bigger-110"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group" style="margin-bottom:0px;">
+                                <div class="col-sm-12">
+                                    <input type="checkbox" id="isFrozen" ng-model="isFrozen" class="ctl-input" />
+                                    <span class="field-caption control-label" style="position: relative; top: -15px; margin-left: 5px;">Frozen Item</span>
+                                </div>
+                            </div>
+
+                            <div class="row form-group" style="margin-bottom:0px;">
+                                <div class="col-sm-12">
+                                    <input type="checkbox" id="isFeatured" ng-model="isFeatured" class="ctl-input" />
+                                    <span class="field-caption control-label" style="position: relative; top: -15px; margin-left: 5px;">Show In Home Page</span>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                    <br />
+                    <div class="section-container">
+                        <div class="s-title">
+                            <span class="product-post-section-text">Product Pricing</span>
+                        </div>
+                        <div class="s-body" style="padding-top: 0;">
+                            <div id="fixedPrice">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="field-caption  field-caption-adjust">Cost Price</div>
+                                        <span style="position: relative; top: 31px; left: 8px;">$</span>
+                                        <input id="costPrice" ng-model="costPrice" ng-keydown="numberOnly($event)" placeholder="Cost Price" class="form-control ctl-input" style="padding-left:30px;">
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <span></span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="field-caption  field-caption-adjust">Sells Price</div>
+                                        <br />
+                                        <table id="tbl-price">
+                                            <thead>
+                                                <tr>
+                                                    <td>
+                                                        Retail Price
+                                                    </td>
+                                                    <td>
+                                                        Wholesale Price
+                                                    </td>
+                                                    <td>
+                                                        Online Price
+                                                    </td>
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                                <td>
+                                                    <div style="position: relative; top: -12px;">
+
+                                                        <div style="position:relative; top:8px;">
+                                                            <span style="position: relative; left: 7px; top: 31px;">$</span>
+                                                            <input id="retail-price" ng-model="retailPrice" ng-change="retailPriceChange()" ng-keydown="numberOnly($event)" placeholder="Retail Price" class="form-control ctl-input" style="padding-left:18px;">
+                                                        </div>
+                                                        <div style="position:relative; top:-8px;">
+                                                            <span style="position: relative; left: 7px; top: 37px;">$</span>
+                                                            <input id="retail-discount" ng-model="retailDiscount" ng-keydown="numberOnly($event)" placeholder="Discount" class="form-control ctl-input" style="padding-left:18px; margin-top:5px;">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="position: relative; top: -12px;">
+                                                        <div style="position:relative; top:8px;">
+                                                            <span style="position: relative; left: 7px; top: 31px;">$</span>
+                                                            <input id="wholesale-price" ng-model="wholesalePrice" ng-keydown="numberOnly($event)" placeholder="Wholesale Price" class="form-control ctl-input" style="padding-left:18px;">
+                                                        </div>
+                                                        <div style="position:relative; top:-8px;">
+                                                            <span style="position: relative; left: 7px; top: 37px;">$</span>
+                                                            <input id="wholesale-discount" ng-model="wholesaleDiscount" ng-keydown="numberOnly($event)" placeholder="Discount" class="form-control ctl-input" style="padding-left:18px; margin-top:5px;">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="position: relative; top: -12px;">
+                                                        <div style="position:relative; top:8px;">
+                                                            <span style="position: relative; left: 7px; top: 31px;">$</span>
+                                                            <input id="online-price" ng-model="onlinePrice" ng-keydown="numberOnly($event)" placeholder="Online Price" class="form-control ctl-input" style="padding-left:18px;">
+                                                        </div>
+                                                        <div style="position:relative; top:-8px;">
+                                                            <span style="position: relative; left: 7px; top: 37px;">$</span>
+                                                            <input id="online-discount" ng-model="onlineDiscount" ng-keydown="numberOnly($event)" placeholder="Discount" class="form-control ctl-input" style="padding-left:18px; margin-top:5px;">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                                @*<div class="row">                                    
+                                    <div class="col-sm-3">
+                                        <div class="field-caption  field-caption-adjust">Discount</div>
+                                        <span style="position: relative; top: 31px; left: 8px;">$</span>
+                                        <input id="discount" ng-model="discount" ng-keydown="numberOnly($event)" placeholder="Discount" class="form-control ctl-input" style="padding-left:30px;">
+                                        <span style="font-size:11px; font-style: italic;">Applicable for retail & wholesale price</span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span></span>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>                    
+                    <br />
+
+                    <div class="center">                        
+                        <a id="btnPostProduct" class="btn btn-default btn-submit" style="color: #fff;" ng-click="updateProduct()">Update Product</a>
+                        <div class="post-product-status" style="padding-top: 10px; display: none;">
+                            <img src="~/Images/ajax-loader-small.gif" />
+                            <span style="font-weight: 600;">Updating Your Product...</span>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

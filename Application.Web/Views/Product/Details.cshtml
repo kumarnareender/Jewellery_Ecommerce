@@ -1,0 +1,428 @@
+﻿@{
+    ViewBag.Title = "Profile Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+
+    .product-title {
+        font-size: 22px;
+        font-weight: 600;
+        color: #3c3241;
+    }
+
+    .related-thumb {
+        float: left;
+    }
+
+    .related-details {
+        text-align: left;
+    }
+
+    .slider-nav-thumbnails .slick-slide {
+        padding: 5px;
+        cursor: pointer;
+    }
+
+        .slider-nav-thumbnails .slick-slide.slick-current {
+            opacity: 0.5 !important;
+            border: 1px solid #888 !important;
+        }
+
+    .slider {
+        background-color: #f1f1f2;
+        text-align: -webkit-center;
+    }
+
+        .slider .slick-prev {
+            left: 10px !important;
+        }
+
+        .slider .slick-next {
+            right: 10px !important;
+        }
+
+        .slider .slick-prev, .slider .slick-next {
+            display: block !important;
+            background-color: rgba(0,0,0,.75) !important;
+            color: #fff !important;
+            border-radius: 3px !important;
+            height: 75px !important;
+            width: 43px !important;
+            top: 45% !important;
+            z-index: 887;
+        }
+
+            .slider .slick-prev:before, .slider .slick-next:before {
+                font-family: "Glyphicons Halflings", "slick", sans-serif !important;
+                font-size: 30px !important;
+                line-height: 2.5 !important;
+            }
+
+            .slider .slick-prev:before {
+                content: "\e257" !important;
+                color: #fff !important;
+                font-weight: 600;
+            }
+
+            .slider .slick-next:before {
+                content: "\e258" !important;
+                color: #fff !important;
+                font-weight: 600;
+            }
+
+    .slider-nav-thumbnails {
+        margin-top: 10px;
+        background-color: #f1f1f2;
+    }
+
+    .slick-slider {
+        margin-bottom: 0 !important;
+    }
+
+    .rp-item {
+        padding: 5px;
+        text-align: -webkit-center;
+        position: relative;
+    }
+
+    .rp-price {
+        font-size: 16px;
+        font-weight: 600;
+        color: #ff7519;
+        line-height: 28px !important;
+    }
+
+    .rp-old-price {
+        text-decoration: line-through;
+        font-size: 14px;
+        color: #000;
+        margin-right: 5px;
+    }
+
+    .rp-info {
+        margin-top: 5px;
+    }
+
+    .rp-info-title {
+        color: #3c3241;
+        font-weight: 600;
+        line-height: 1.5;
+        height: 40px;
+        overflow: hidden;
+        font-size: 14px;
+    }
+
+    .rp-info-location {
+        color: #3c3241;
+        font-style: italic;
+    }
+
+    .related-product-slider .slick-prev, .related-product-slider .slick-next {
+        height: 50px !important;
+        width: 50px !important;
+        top: 30% !important;
+    }
+
+    .related-product-slider .slick-prev {
+        left: -40px !important;
+    }
+
+    .related-product-slider .slick-next {
+        right: -40px !important;
+    }
+
+    .slider-modal .slick-prev, .slider-modal .slick-next {
+        height: 80px !important;
+        width: 80px !important;
+        z-index: 99999;
+    }
+
+        .slider-modal .slick-prev:before, .slider-modal .slick-next:before {
+            font-family: "Glyphicons Halflings", "slick", sans-serif !important;
+            font-size: 40px !important;
+            line-height: 2.5 !important;
+        }
+
+    .slider-modal .slick-prev {
+        left: 0px !important;
+    }
+
+    .slider-modal .slick-next {
+        right: 0 !important;
+    }
+
+    .company-title {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        height: auto;
+        -webkit-line-clamp: 1;
+        font-size: 17px;
+        color: #3997ba;
+        margin-bottom: 0;
+        margin-right: 5px;
+    }
+
+    .rp-img img {
+        border: 1px solid #dcdcdc;
+    }
+
+    #product-description, #product-condition {
+        font-size: 15px;
+    }
+
+    .prod-desc-title {
+        color: #373373;
+        font-size: 17px;
+        font-weight: 600;
+    }
+
+    /*----------------------- TAB -------------------*/
+    .masonry {
+        margin: 0 auto;
+    }
+
+    .tabs {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden;
+        border-bottom: 1px solid #dcdcdc;
+    }
+
+        .tabs li {
+            float: left;
+            border: 1px solid #ccc;
+            border-bottom: none;
+        }
+
+            .tabs li a {
+                display: block;
+                padding: 10px 20px;
+                font-size: 14px;
+                color: #000;
+                text-decoration: none;
+            }
+
+            .tabs li.active {
+                background: #fff;
+                border-top: 2px solid #ff6a00;
+            }
+
+                .tabs li.active a {
+                    color: #ff6a00;
+                    font-weight: 600;
+                }
+
+    .tab_container {
+        border: 1px solid #dae2ee;
+        border-top: none;
+        background: #fff;
+    }
+
+    .tab_content {
+        padding: 20px;
+        font-size: 14px;
+    }
+
+    .tab-2 {
+        margin-left: 5px;
+    }
+    /*---------------------- END TAB ----------------*/
+
+    .prod-details-header {
+        padding-bottom: 10px;
+        border-bottom: 1px dotted #dcdcdc;
+        margin-bottom: 10px;
+    }
+
+        .prod-details-header > span {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+    .prod-sec-container {
+        padding: 30px;
+        background-color: #fff;
+        border: 1px solid #dae2ee;
+    }
+
+    #tblProductAttribute {
+        margin-bottom: 20px;
+    }
+
+        #tblProductAttribute tr td {
+            padding: 5px;
+            border: 1px solid #dcdcdc;
+        }
+
+    .spe-attr-name {
+        background-color: aliceblue;
+    }
+
+    .tbl-auction-price tr td {
+        padding: 3px;
+    }
+</style>
+
+<form name="myForm" novalidate>
+    <div ng-controller="ProductDetailCtrl" class="form-horizontal">
+
+
+        <div class="container">
+            <div style="padding: 15px; padding-top:0; padding-left: 0;">
+                <div id="bread-crumb"></div>
+            </div>
+
+            <div class="prod-sec-container">
+                <div class="row" style="border-bottom: 0px solid #dcdcdc;">
+                    <div class="col-sm-6">
+
+                        <!--Modal-->
+                        <div class="slider-modal-container">
+                            <div class="slider-modal" style="display: none;"></div>
+                        </div>
+                        <span class="slider-modal-close glyphicons glyphicons-remove" ng-click="closeModal()"></span>
+
+
+                        <!--Main image-->
+                        <div class="slider" style="border: 1px solid #dcdcdc; background-color:#fff;">
+                            <div class="product-thumb" style="width: 100%; height: 488px;">
+                                <div class="dum-prod-item" style="width: 100%; height: 100%;"></div>
+                            </div>
+                        </div>
+                        <!-- Thumbnail -->
+                        <div class="slider-nav-thumbnails"></div>
+                        <br />
+                    </div>
+                    <div class="col-sm-6" style="margin-bottom: 20px;">
+                        <div>
+                            <div>
+                                <span class="product-title">{{product.Title}}</span>
+                            </div>
+                            <div style="margin-top:10px; padding-bottom:5px; margin-bottom:10px; border-bottom:1px solid #dcdcdc;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <span style="font-size:15px;">SKU: {{product.Barcode}}</span>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div id="showColorDiv" style="color:white;background-color:white">
+                                            <span style="font-size: 15px; margin-left: 30px;" id="showColor"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                                <span style="font-size: 15px;">Price</span>
+                                <div style="padding-top:5px;">
+                                    <span class="old-price">{{product.PriceTextOld}}</span>
+                                    <span class="theme-text-color" id="price" style="font-size: 24px; font-weight: 600; color: #ff7519;">{{product.PriceText}}</span>
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                                <span style="font-size: 15px;">Weight / Size:</span><span style="margin-left:10px; font-size: 16px; font-weight:600;">{{product.WeightText}}</span>
+                            </div>
+
+                            <br />
+                            <div id="size">
+                                <span style="font-size: 15px;">Size:</span>
+                                <label ng-repeat="size in product.Sizes | orderBy:'Name':false" class="padd-left-10">
+                                    <input id="rbSize" type="radio" name="size" class="form-check-input sizes" checked="checked" value="{{size.Size}}" ng-click="clickSize(size.Size)" required>
+                                    {{size.Size}}
+                                </label>
+                            </div>
+                            <br />
+                            <div id="color">
+                                <!--<span style="font-size: 15px;">Color:</span>
+                                <label ng-repeat="color in product.Colors | orderBy:'Name':false" class="padd-left-10">
+                                    <input id="rbColor" type="radio" name="color" class="form-check-input"-->
+                                @*checked="checked"*@
+                                <!--value="{{color.Color}}" required>
+                                    {{color.Color}}
+                                </label>-->
+                            </div>
+                            <br />
+
+                            <div id="choice">
+                                <span style="font-size: 15px;">Choice:</span>
+                                <label ng-repeat="choice in product.Choices | orderBy:'Name':false" class="padd-left-10">
+                                    <input id="choice_{{choice.Id}}" type="checkbox" class="form-check-input choices"  value="{{choice.Name}}" ng-click="clickChoice(choice.Id)" required>
+                                    {{choice.Name}}
+                                </label>
+                            </div>
+                            <br />
+
+                            <div id="option">
+                                <span style="font-size: 15px;">Options:</span>
+                                <label ng-repeat="option in product.Options | orderBy:'Name':false" class="padd-left-10">
+                                    <input id="rbSize" type="radio" name="option" class="form-check-input options" checked="checked" value="{{option}}" ng-click="clickOption(option)" required>
+                                    {{option}}
+                                </label>
+                            </div>
+
+                            <br />
+
+                            <div>
+                                <span style="font-size: 15px;">Quantity</span>
+                                <div style="padding-top:5px;">
+                                    <button id="btnMinus" class="btn btn-default" style=" float:left;">-</button>
+                                    <input id="cartQuantity" type="text" value="1" class="form-control" style="width: 77px; float: left; margin-left: 10px; margin-right: 10px; text-align: center; border: 1px solid #dcdcdc !important;" />
+                                    <button id="btnPlus" class="btn btn-default">+</button>
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+
+                                <button class="btn btn-primary btn-add-to-cart" style="padding-left: 30px;padding-right: 30px;">
+                                    Add To Cart
+                                </button>
+
+                                <a class="btn btn-warning app-hide" style="padding-left: 30px; padding-right: 30px; margin-left:5px; background-color: #f57224;" href="/cart">
+                                    View Cart
+                                </a>
+                            </div>
+                            <br />
+                            @*<div style="border-top:1px solid #dcdcdc;padding-top:20px; margin-top:10px;">
+
+                                </div>*@
+                        </div>
+                        <br />
+
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="masonry">
+                <ul class="tabs">
+                    <li><a href="#tab1">Product Details</a></li>
+                </ul>
+                <div class="tab_container">
+                    <div id="tab1" class="tab_content">
+                        <table id="tblProductAttribute"></table>
+
+                        <div>
+                            <span id="product-description"></span>
+                        </div>
+
+                    </div>
+                    <div id="tab2" class="tab_content">
+                        <span>Please meet with seller in a convenient place in order to complete the trade.</span>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="prod-sec-container">
+                <div style="border-bottom: 1px solid #dcdcdc; margin-bottom: 10px; padding-bottom: 5px;">
+                    <span style="font-size: 20px;">You may also like</span>
+                </div>
+                <div style="padding: 20px;">
+                    <div class="related-product-slider"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

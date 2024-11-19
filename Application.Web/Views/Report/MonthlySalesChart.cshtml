@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Monthly Sales Chart";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+
+<style type="text/css">
+    .highcharts-container {
+        border: 1px solid #dcdcdc;
+    }
+    .tbl-monthly-sells-filter tr td{
+        padding:5px;
+    }
+</style>
+
+<div class="page-banner no-subtitle">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Monthly Sales Chart</h2>
+        </div>
+        <div class="col-md-6">
+            <ul class="breadcrumbs">
+                <li><a href="#">Admin</a></li>
+                <li>Sales Chart</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div ng-controller="MonthlySalesChartCtrl" class="row" style="margin-top: 20px;">
+
+        <div class="row11">
+            <div class="col-md-12">
+                <div style="border:1px solid #dcdcdc; margin-bottom: 20px; padding:10px; text-align: center;">
+                    <table class="tbl-monthly-sells-filter">
+                        <tr>
+                            <td>
+                                Select Branch:
+                            </td>
+                            <td>
+                                <select id="branch" name="branch" class="form-control form-group-margin">
+                                    <option value="">All Branches</option>
+                                </select>
+                            </td>
+                            <td style="width:20px;"></td>                            
+                            <td>
+                                Select Year:
+                            </td>
+                            <td>
+                                <select class="form-control" name="year" id="year"></select>
+                            </td>                            
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row11">
+            <div class="col-md-12">
+                <div class="center loader" style="display:none;">
+                    <img src="~/Images/ajax-loader.gif" />  <span>Loading Data...</span>
+                </div>
+                <div style="height:350px;" id="monthly-sales-chart"></div>
+                <div style="margin-top:10px;">
+                    <b>Note:</b><span>&nbsp;Selecting specific branch excludes Online Sells records.</span>
+                </div>
+            </div>
+        </div>
+
+</div>

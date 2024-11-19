@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "OrderDetails";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+}
+
+<div class="page-banner no-subtitle">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Order Details</h2>
+        </div>
+        <div class="col-md-6">
+            <ul class="breadcrumbs">
+                <li><a href="#">My Orders</a></li>
+                <li>Order Details</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<form name="myForm" novalidate>
+    <div ng-controller="CustomerOrderDetailsCtrl" class="form-horizontal">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="tbl-order-details" style="margin-bottom:15px; float:left;">
+                    <tr>
+                        <td style="font-weight:600;">Order Id:</td>
+                        <td><span id="orderCode"></span></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:600;">Order Status:</td>
+                        <td><span id="orderStatus"></span></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:600;">Order Date:</td>
+                        <td><span id="orderDate"></span></td>
+                    </tr>
+                </table>
+                <div class="print-btn-container" style="float:right;">
+                    <button id="cusPrintOrder" class="btn btn-primary">Print Order</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="item-loading">
+                    <img src="~/Images/ajax-loader.gif" /> Loading...
+                </div>
+                <div style="overflow:auto">
+                    <div id="customer-order-details-item-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Stock Update";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+
+<div class="container11">
+
+    <div class="page-banner no-subtitle">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Stock Update</h2>
+            </div>
+            <div class="col-md-6">
+                <ul class="breadcrumbs">
+                    <li><a href="#">Products</a></li>
+                    <li>Stock Update</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <form name="myForm" novalidate>
+        <div ng-controller="updateStockCtrl" class="form-horizontal" style="padding-top:5px;">            
+            <div style="margin-top:5px;">
+                <div class="section-container">
+                    <div class="s-title">
+                        <span class="product-post-section-text">Store Branch</span>
+                    </div>
+                    <div class="s-body" style="margin-top:5px;">
+
+                        <div class="row form-group">
+                            <div class="col-sm-5">                                
+                                <select id="branch" ng-change="changeBranch()" ng-model="branchId" name="branchId" class="form-control form-group-margin" ng-options="branch.Id as branch.Name for branch in branchList">
+                                    <option value="">Select Branch</option>
+                                </select>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>                                        
+                
+                <br />              
+
+                <div id="general-container" class="tblHeader">
+                    <div class="item-loading">
+                        <img src="~/Images/ajax-loader.gif" /> Loading...
+                    </div>
+                    <table id="dt-update-stock" class="table table-striped table-bordered table-hover"></table>
+                </div>
+                               
+            </div>
+        </div>
+    </form>
+</div>

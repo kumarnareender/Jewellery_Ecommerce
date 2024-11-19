@@ -1,0 +1,242 @@
+﻿
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+}
+
+@media only screen and (max-width : 768px) {
+
+
+
+    .top-bar-right a {
+        border-right: 1px solid #dcdcdc !important;
+        color: #fff;
+    }
+
+    .top-bar-right a {
+        border-right: 1px solid #dcdcdc;
+        padding: 14px;
+        position: relative;
+        top: 10px;
+        font-size: 15px;
+    }
+
+    .support-item {
+        padding: 10px 15px;
+        margin-bottom: 5px;
+        background-color: #f6f6f6;
+        overflow: hidden;
+        text-align: left;
+        width: 100% !important;
+    }
+
+        .support-item .support-img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .support-item > div {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .support-item .info {
+            width: calc(100% - 55px);
+            padding-left: 10px;
+        }
+
+        .support-item .description {
+            display: none;
+        }
+
+    #barcode-reader {
+        width: initial !important;
+    }
+
+    .dataTables_wrapper {
+        overflow: auto;
+    }
+
+    .admin-left-area {
+        width: 100% !important;
+    }
+
+    .admin-right-area {
+        width: 100% !important;
+    }
+
+    .mobile-view-overflow {
+        overflow: auto;
+    }
+
+    .menu-category-label {
+        font-size: 13px !important;
+        color: #fff;
+        position: relative;
+        top: 0px !important;
+    }
+
+    .bar-link {
+        flex: 0 10% !important;
+    }
+
+        .bar-link .header-link-areas {
+            right: 3px !important;
+        }
+
+    .after-login-text-app-view {
+        display: initial !important;
+    }
+
+    .after-login-text-desktop-view {
+        display: none;
+    }
+
+    .top-header-desktop-view {
+        display: none;
+    }
+
+    .top-header-app-view {
+        display: initial !important;
+    }
+
+    .top-cat-menu-container {
+        width: 320px !important;
+    }
+
+    .app-hide {
+        display: none !important;
+    }
+
+    .app-show {
+        display: inherit !important;
+    }
+
+    .view-more {
+        display: none;
+    }
+
+    .container {
+        width: 100% !important;
+    }
+
+    .cat-slider-container {
+        display: none;
+    }
+
+    .navbar-brand {
+        /*display: none !important;*/
+        /*flex: 0%;*/
+        width: 7000% !important;
+        padding-left: 15px;
+    }
+
+    .bar-logo {
+        flex: 0 1%;
+    }
+
+    .bar-search {
+        flex: 80%;
+    }
+
+    #header-search-box {
+        width: 80% !important;
+    }
+
+    .bar-search {
+        margin-top: 60px;
+    }
+
+    .top-header {
+        margin-top: 40px !important;
+    }
+
+    header {
+        height: 150px !important;
+    }
+
+    #header-search-btn-container {
+        width: 20% !important;
+    }
+
+    .homepage-section-container .grid-item {
+        width: 50% !important;
+    }
+
+    #feedback {
+        display: none !important;
+    }
+
+    .login-form {
+        width: initial !important;
+    }
+
+    .register-form {
+        width: initial !important;
+    }
+
+    #divRegister .form-group {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .page-banner .breadcrumbs {
+        display: none;
+    }
+
+    .dataTables_filter {
+        display: none;
+    }
+
+    .print-btn-container {
+        float: left !important;
+        margin-bottom: 5px;
+    }
+
+    .menu-cart-items {
+        width: 320px !important;
+    }
+
+    .shopping-cart-container {
+        width: 100% !important;
+        overflow: scroll;
+        border: 1px solid #dcdcdc;
+    }
+
+    .btn-continue-shopping {
+        display: none;
+    }
+
+    .shopping-cart-buttons {
+        padding-bottom: 20px !important;
+    }
+
+    #order-item-list {
+        overflow: scroll;
+        border: 1px solid #dcdcdc;
+    }
+
+    #search-item-container .grid-item {
+        width: 50% !important;
+    }
+
+    .old-price {
+        font-size: 11px !important;
+    }
+
+    .h-p-price {
+        font-size: 13px !important;
+    }
+
+    .grid-item-info {
+        padding: 2px !important;
+    }
+
+    #wrapper {
+        padding-bottom: 20px !important;
+    }
+
+    .dummy-item-loader .grid-item {
+        width: 50% !important;
+        border-right: 0 !important;
+        padding-left: 3px !important;
+    }
+}

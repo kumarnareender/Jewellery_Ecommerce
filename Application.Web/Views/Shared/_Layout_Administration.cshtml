@@ -1,0 +1,143 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.inner-list-container a').each(function (index) {
+                if (this.href.trim() == window.location) {
+                    $('.admin-menu-active', '.inner-list-container').removeClass('admin-menu-active');
+                    $(this).parent().addClass("admin-menu-active");
+                }
+            });
+
+            $('.button-left').click(function () {
+                $('.sidebar').toggleClass('fliph');
+            });
+
+        });
+    </script>
+
+    @RenderSection("scripts_myplace", required: false)
+}
+
+
+@*<div class="container admin-container" style="margin-top: 0px;">*@
+<div class="" style="margin-top: 0px;">
+
+    <div class="clearfix" style="background-color: #222d32; ">
+
+        <div class="row11">
+            <div class="col-md-333 admin-left-area" style="width:18%; float:left;">
+                <div class="sidebar left">
+
+                    <div style="text-align: center; padding: 10px; border-bottom: 1px solid #555;">
+                        <h3 style="color: #fff;">Administration</h3>
+                    </div>
+                    <ul class="list-sidebar">
+                        <li>
+                            <a href="/Admin" data-toggle="collapse" data-target="#dashboard" class="collapsed active"> <i class="fa fa-dashboard"></i> <span class="nav-label"> Dashboard </span> </a>
+                        </li>
+                        <li>
+                            <a href="/Home/index" data-toggle="collapse" data-target="#home" class="collapsed active"> <i class="fa fa-home"></i> <span class="nav-label"> Create Sale </span> </a>
+                        </li>
+                        <li style="display:@{var valProduct = Application.Common.Utils.HasPermission("product-m"); @valProduct;}">
+                            <a href="#" data-toggle="collapse" data-target="#products" class="collapsed active"> <i class="fa fa-th-large"></i> <span class="nav-label"> Products </span> <span class="fa fa-chevron-left pull-right"></span> </a>
+                            <ul class="sub-menu collapse" id="products">
+                                <li style="display:@{var valAddProduct = Application.Common.Utils.HasPermission("addProduct-sm"); @valAddProduct;}"><a href="/ProductEntry/Post?load=all"> Add Product</a></li>
+                                <li style="display:@{var valProductList = Application.Common.Utils.HasPermission("productList-sm"); @valProductList;}"><a href="/Admin/ProductList?load=all"> Product List</a></li>
+                                @*<li><a href="/Admin/ProductList?load=all"> Product List</a></li>*@
+                                <li><a href="/ProductUpload/"> Upload products</a></li>
+                            </ul>
+                        </li>
+                        <li style="display:@{var valCustomer = Application.Common.Utils.HasPermission("customer-m"); @valCustomer;}">
+                            <a href="#" data-toggle="collapse" data-target="#customer" class="collapsed active"><i class="fa fa-group"></i><span class="nav-label"> Customer </span> <span class="fa fa-chevron-left pull-right"></span> </a>
+                            <ul class="sub-menu collapse" id="customer">
+                                <li><a href="/Admin/CustomerAdd">Add Customer</a></li>
+                                <li><a href="/Admin/CustomerList"> Customer List</a></li>
+                            </ul>
+                        </li>
+                        <li style="display:@{var valStock = Application.Common.Utils.HasPermission("manageStock-m"); @valStock;}">
+                            <a href="#" data-toggle="collapse" data-target="#stocks" class="collapsed active"> <i class="fa fa-upload"></i> <span class="nav-label"> Manage Stocks </span> <span class="fa fa-chevron-left pull-right"></span> </a>
+                            <ul class="sub-menu collapse" id="stocks">
+                                <li><a href="/ProductEntry/StockUpdate"> Update Stock</a></li>
+                            </ul>
+                        </li>
+                        <li style="display:@{var valOrder = Application.Common.Utils.HasPermission("order-m"); @valOrder;}">
+                            <a href="#" data-toggle="collapse" data-target="#orders" class="collapsed active"> <i class="fa fa-list-alt"></i> <span class="nav-label"> Orders </span> <span class="fa fa-chevron-left pull-right"></span> </a>
+                            <ul class="sub-menu collapse" id="orders">
+                                <li><a href="/Order/OrderList"> Order List</a></li>
+                                <li><a href="/PurchaseOrder/PurchaseOrderList"> Purchase Order List</a></li>
+                                <li><a href="/Wholesale">Add Wholesale Order</a></li>
+                                <li><a href="/PurchaseOrder">Add Purchase Order</a></li>
+                            </ul>
+                        </li>
+                        <li style="display:@{var valConfiguration = Application.Common.Utils.HasPermission("configuration-m"); @valConfiguration;}">
+                            <a href="#" data-toggle="collapse" data-target="#configuration" class="collapsed active"> <i class="fa fa-gear"></i> <span class="nav-label"> Configuration </span> <span class="fa fa-chevron-left pull-right"></span> </a>
+                            <ul class="sub-menu collapse" id="configuration">
+                                <li><a href="/Branch/Branch"> Branch</a></li>
+                                <li><a href="/City/City"> City</a></li>
+                                <li><a href="/Promotion/Promotion"> Promotion</a></li>
+                                <li><a href="/Admin/Category"> Category</a></li>
+                                <li><a href="/Supplier/Supplier"> Supplier</a></li>
+                                <li><a href="/ItemType/ItemType"> Item Type</a></li>
+                                <li><a href="/StockLocation/StockLocation"> Stock Location</a></li>
+                                <li><a href="/HomeSlider/SliderImage"> Slider Image</a></li>
+                                <li><a href="/Photo/SiteLogo"> Site Logo</a></li>
+                                <li><a href="/Testimony/UpdateTestimonies">Testimonies</a></li>
+                                <li><a href="/AboutUs/CreateAboutUs">About Us</a></li>
+                            </ul>
+                        </li>
+                        <li style="display:@{var valReport = Application.Common.Utils.HasPermission("report-m"); @valReport;}">
+                            <a href="#" data-toggle="collapse" data-target="#reports" class="collapsed active"> <i class="fa fa-bars"></i> <span class="nav-label"> Reports </span> <span class="fa fa-chevron-left pull-right"></span> </a>
+                            <ul class="sub-menu collapse" id="reports">
+                                <li><a href="/Report/DailySales"> Sells Report</a></li>
+                                <li><a href="/Report/PaymentReport"> Payment Report</a></li>
+                                <li><a href="/Report/DailySalesChart"> Daily Sells Chart</a></li>
+                                <li><a href="/Report/MonthlySalesChart"> Monthly Sells Chart</a></li>
+                                <li><a href="/Report/ActivityLog"> Activity Logs</a></li>
+                            </ul>
+                        </li>
+                        @{
+                            if (Application.Common.Utils.GetLoggedInUser() != null)
+                            {
+                                if (User.IsInRole("admin"))
+                                {
+                                    <li>
+                                        <a href="#" data-toggle="collapse" data-target="#users" class="collapsed active"> <i class="fa fa-user"></i> <span class="nav-label"> User Management </span> <span class="fa fa-chevron-left pull-right"></span> </a>
+                                        <ul class="sub-menu collapse" id="users">
+                                            <li><a href="/UserManagement/CreateUser"> Create User</a></li>
+                                            <li><a href="/UserManagement/UserList"> User List</a></li>
+                                        </ul>
+                                    </li>
+                                }
+                            }
+                        }
+
+                        <li>
+                            <a href="#" data-toggle="collapse" data-target="#account" class="collapsed active"> <i class="fa fa-medkit"></i> <span class="nav-label"> Account </span> <span class="fa fa-chevron-left pull-right"></span> </a>
+                            <ul class="sub-menu collapse" id="account">
+                                <li style="display:@{var valSetting = Application.Common.Utils.HasPermission("setting-sm"); @valSetting;}"><a href="/Setting/Setting"> Settings</a></li>
+                                <li><a href="/Account/ChangePassword"> Change Password</a></li>
+                                <li><a href="/Security/Signout"> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-999 admin-right-area" style="width:82%; float:left;">
+                <div class="admin-content" style="min-height:500px; background-color:#fff;">
+                    <div id="myplace-right-section-container" style="background-color: #fff; padding: 20px; min-height: 303px; border: 1px solid #ebebeb; border-bottom:0;">
+                        @RenderBody()
+                        <input type="number" value="@Application.Common.Utils.GetBranchId()" class="hidden" id="branch-id" hidden />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

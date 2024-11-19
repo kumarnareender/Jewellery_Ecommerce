@@ -1,0 +1,83 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+
+<style type="text/css">
+    .refine-search-container {
+        
+    }
+    .filter-container {
+        margin-bottom: 10px;
+    }
+    .filter-header {
+        margin-top:15px;
+        padding: 4px;
+        background-color: #dcdcdc;
+    }
+    .filter-content {
+        padding: 4px;
+        padding-top: 8px;
+        padding-left: 10px;
+        background-color: #fff;
+        border: 1px solid #dcdcdc;
+    }
+    .admin-menu-active {
+        background-color: aliceblue;
+    }
+    .inner-list-container li{
+        border-bottom: 1px solid #dcdcdc;
+        padding:7px;
+    }
+    .last-li{
+        margin-bottom:0 !important;
+    }
+</style>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.inner-list-container a').each(function (index) {
+                if (this.href.trim() == window.location) {
+                    $('.admin-menu-active', '.inner-list-container').removeClass('admin-menu-active');
+                    $(this).parent().addClass("admin-menu-active");
+                }
+            });
+        });
+    </script>
+
+    @RenderSection("scripts_myplace", required: false)
+}
+
+<div class="container admin-container" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-sm-3" style="margin-bottom: 20px;">
+            <div class="refine-search-container">
+                <div class="filter-container" style="margin-bottom:0;">
+                    <div class="filter-header" style="text-align: left; margin-top:0;">
+                        <span style="font-size: 15px; padding-left: 8px;"><b>My Orders</b></span>
+                    </div>
+                    <div class="filter-content" style="padding:0;">
+                        <ul class="inner-list-container">
+                            <li style="border-bottom:0;"><a href="/Customer/OrderList"><i class="icon-list-bullet"></i> Order List</a></li>                            
+                        </ul>
+                    </div>                                        
+                    <div class="filter-header" style="text-align: left;">
+                        <span style="font-size: 15px; padding-left: 8px;"><b>My Account</b></span>
+                    </div>
+                    <div class="filter-content" style="padding:0;">
+                        <ul class="inner-list-container">
+                            <li><a href="/Customer/EditAddress"><i class="icon-edit"></i> Edit Address</a></li>
+                            <li><a href="/Customer/ChangePassword"><i class="icon-air"></i> Change Password</a></li>                            
+                            <li style="border-bottom:0;"><a href="/Security/SignOut"><i class="icon-logout"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div style="background-color: #fff; padding: 10px; min-height: 303px; border: 1px solid #ebebeb;">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</div>

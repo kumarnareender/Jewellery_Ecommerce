@@ -1,0 +1,575 @@
+﻿@model dynamic
+<!DOCTYPE html>
+
+<html lang="en" ng-app="app">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Basic -->
+    <title>@{ var siteTitle = Application.Common.Utils.GetCompanyName(); @siteTitle}</title>
+
+    <!-- Responsive Metatag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Page Description and Keyword -->
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/favicon.png" />
+
+    <link href="~/Assets/css/style.css" rel="stylesheet" />
+
+    @Styles.Render("~/css")
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet" media="print" onload="if(media!='all')media='all'">
+
+    @*<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>*@
+
+
+</head>
+
+<body ng-cloak>
+
+    <div id="wrapper">
+        <input hidden value=" @{var appType = Application.Common.Utils.GetSetting("ApplicationType"); @appType;}" id="appType" />
+        <input hidden value="false" id="isItemGotForCart" />
+        <!-- Container -->
+        <div id="container" class="boxed-page-NONE">
+
+            <div class="hidden-header" style="height: 155px;"></div>
+
+            <header style="background-color: #fff; border-bottom: 1px solid #dcdcdc; height: 110px; top: 0px; ">
+                <nav id="top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-6 header-social">
+                                <div class="header-social">
+                                    <div class="socials-block">
+                                        <ul>
+                                            <li><a href="@{var facebookLink = Application.Common.Utils.GetFacebookLink(); @facebookLink;}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="@{var twitterLink = Application.Common.Utils.GetTwitterLink(); @twitterLink;}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="@{var linkedInLink = Application.Common.Utils.GetLinkedInLink(); @linkedInLink;}" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="top-links" class="col-sm-6 col-xs-6 text-right">
+                                <ul class="list-inline pull-right">
+                                    <li class="dropdown top-item-li" style="border-left: 1px solid #dcdcdc;">
+                                        <a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-user hidden-md hidden-lg hidden-sm"></i><span class="hidden-xs">My Account</span>&nbsp;<i class="fa fa-angle-down"></i></a>
+                                        <ul class="dropdown-menu dropdown-menu-right userdown">
+                                            @{
+
+                                                if (Application.Common.Utils.GetLoggedInUser() != null)
+                                                {
+                                                    if (User.IsInRole("admin") /*|| User.IsInRole("manager")*/ )
+                                                    {
+                                                        <li>
+                                                            <a href="/Admin/Index" class="after-login-text-desktop-view">Administration</a>
+                                                        </li>
+                                                        <li>
+                                                            <span><a href="/Security/SignOut" style=" position: relative; top: 2px;">Sign Out</a></span>
+                                                        </li>
+                                                    }
+                                                    else if (User.IsInRole("salesperson"))
+                                                    {
+                                                        <li>
+                                                            <span><a href="/Customer/Index" style=" position: relative; top: 2px;">Dashboard</a></span>
+                                                        </li>
+                                                        <li>
+                                                            <span><a href="/Customer/OrderList" style=" position: relative; top: 2px;">My Orders</a></span>
+                                                        </li>
+                                                        <li>
+                                                            <span><a href="/Customer/EditAddress" style=" position: relative; top: 2px;">My Address</a></span>
+                                                        </li>
+                                                        <li>
+                                                            <span><a href="/Security/SignOut" style=" position: relative; top: 2px;">Sign Out</a></span>
+                                                        </li>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <li>
+                                                        <a href="/Security/Login" class="after-login-text-desktop-view">Login</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Account/Register" class="after-login-text-desktop-view">Register</a>
+                                                    </li>
+                                                }
+
+                                            }
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown language-select top-item-li">
+                                        <div>
+                                            <script type="text/javascript">
+                                                function getCurrLanguage() { var keyValue = document.cookie.match('(^|;) ?googtrans=([^;]*)(;|$)'); return keyValue ? keyValue[2].split('/')[2] : null; }
+                                                function translateEventFire(element, event) { try { if (document.createEventObject) { var evt = document.createEventObject(); element.fireEvent('on' + event, evt) } else { var evt = document.createEvent('HTMLEvents'); evt.initEvent(event, true, true); element.dispatchEvent(evt) } } catch (e) { } }
+                                                function performTranslate(lang_pair) { if (lang_pair.value) lang_pair = lang_pair.value; if (lang_pair == '') return; var lang = lang_pair.split('|')[1]; if (getCurrLanguage() == null && lang == lang_pair.split('|')[0]) return; var teCombo; var sel = document.getElementsByTagName('select'); for (var i = 0; i < sel.length; i++) if (sel[i].className == 'goog-te-combo') teCombo = sel[i]; if (document.getElementById('google_translate_element2') == null || document.getElementById('google_translate_element2').innerHTML.length == 0 || teCombo.length == 0 || teCombo.innerHTML.length == 0) { setTimeout(function () { performTranslate(lang_pair) }, 500) } else { teCombo.value = lang; translateEventFire(teCombo, 'change'); translateEventFire(teCombo, 'change') } }
+                                            </script>
+
+                                            <div id="google_translate_element2" style="display:none;"><div class="skiptranslate goog-te-gadget" dir="ltr"><div id=":0.targetLanguage"><select class="goog-te-combo"><option value="en">English</option><option value="af">Afrikaans</option><option value="sq">Albanian</option><option value="am">Amharic</option><option value="ar">Arabic</option><option value="hy">Armenian</option><option value="az">Azerbaijani</option><option value="eu">Basque</option><option value="be">Belarusian</option><option value="bn">Bengali</option><option value="bs">Bosnian</option><option value="bg">Bulgarian</option><option value="ca">Catalan</option><option value="ceb">Cebuano</option><option value="ny">Chichewa</option><option value="zh-CN">Chinese (Simplified)</option><option value="zh-TW">Chinese (Traditional)</option><option value="co">Corsican</option><option value="hr">Croatian</option><option value="cs">Czech</option><option value="da">Danish</option><option value="nl">Dutch</option><option value="eo">Esperanto</option><option value="et">Estonian</option><option value="tl">Filipino</option><option value="fi">Finnish</option><option value="fr">French</option><option value="fy">Frisian</option><option value="gl">Galician</option><option value="ka">Georgian</option><option value="de">German</option><option value="el">Greek</option><option value="gu">Gujarati</option><option value="ht">Haitian Creole</option><option value="ha">Hausa</option><option value="haw">Hawaiian</option><option value="iw">Hebrew</option><option value="hi">Hindi</option><option value="hmn">Hmong</option><option value="hu">Hungarian</option><option value="is">Icelandic</option><option value="ig">Igbo</option><option value="id">Indonesian</option><option value="ga">Irish</option><option value="it">Italian</option><option value="ja">Japanese</option><option value="jw">Javanese</option><option value="kn">Kannada</option><option value="kk">Kazakh</option><option value="km">Khmer</option><option value="ko">Korean</option><option value="ku">Kurdish (Kurmanji)</option><option value="ky">Kyrgyz</option><option value="lo">Lao</option><option value="la">Latin</option><option value="lv">Latvian</option><option value="lt">Lithuanian</option><option value="lb">Luxembourgish</option><option value="mk">Macedonian</option><option value="mg">Malagasy</option><option value="ms">Malay</option><option value="ml">Malayalam</option><option value="mt">Maltese</option><option value="mi">Maori</option><option value="mr">Marathi</option><option value="mn">Mongolian</option><option value="my">Myanmar (Burmese)</option><option value="ne">Nepali</option><option value="no">Norwegian</option><option value="ps">Pashto</option><option value="fa">Persian</option><option value="pl">Polish</option><option value="pt">Portuguese</option><option value="pa">Punjabi</option><option value="ro">Romanian</option><option value="ru">Russian</option><option value="sm">Samoan</option><option value="gd">Scots Gaelic</option><option value="sr">Serbian</option><option value="st">Sesotho</option><option value="sn">Shona</option><option value="sd">Sindhi</option><option value="si">Sinhala</option><option value="sk">Slovak</option><option value="sl">Slovenian</option><option value="so">Somali</option><option value="es">Spanish</option><option value="su">Sundanese</option><option value="sw">Swahili</option><option value="sv">Swedish</option><option value="tg">Tajik</option><option value="ta">Tamil</option><option value="te">Telugu</option><option value="th">Thai</option><option value="tr">Turkish</option><option value="uk">Ukrainian</option><option value="ur">Urdu</option><option value="uz">Uzbek</option><option value="vi">Vietnamese</option><option value="cy">Welsh</option><option value="xh">Xhosa</option><option value="yi">Yiddish</option><option value="yo">Yoruba</option><option value="zu">Zulu</option></select></div>Powered by <span style="white-space:nowrap"><a class="goog-logo-link" href="https://translate.google.com" target="_blank"><img src="https://www.gstatic.com/images/branding/googlelogo/1x/googlelogo_color_42x16dp.png" width="37px" height="14px" style="padding-right: 3px" alt="Google Translate">Translate</a></span></div></div>
+
+                                            <script type="text/javascript">function googleTranslateElementInit2() { new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element2'); }</script>
+                                            <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+                                        </div>
+                                        <a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-globe hidden-md hidden-lg hidden-sm"></i><span class="hidden-xs">Language</span>&nbsp;<i class="fa fa-angle-down"></i></a>
+                                        <ul class="dropdown-menu dropdown-menu-right userdown">
+                                            <li>
+                                                <button onclick="performTranslate('en|en');return false;" class="btn btn-link btn-block language-select" type="button" name="ar"><img src="~/images/flag-english.png" alt="English" title="English"> &nbsp; English</button>
+                                            </li>
+                                            <li>
+                                                <button onclick="performTranslate('en|es');return false;" class="btn btn-link btn-block language-select" type="button" name="en-es"><img src="~/images/flag-spain.png" alt="Japanese" title="Japanese"> &nbsp; Spanish</button>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="container">
+                    <div class="bar-container" style="position: relative; top: 8px">
+                        <div class="bar-logo">
+                            <a class="navbar-brand" href="/Home/Index">
+                                <img alt="" src="/Images/Logo/Original/Logo.png" style="height: 60px;position: relative;top: -28px;">
+                            </a>
+                        </div>
+                        <div class="bar-search">
+                            <div style="float: left; position: relative; top: 8px; width: 100%; padding-left: 10px; padding-right: 10px;">
+                                <input id="header-search-box" class="form-control header-search-control" type="text" placeholder="Search Items" style="width: 93%; height: 40px; padding-left: 15px; border: 2px solid #FA2D18; border-right: 1px solid #FA2D18 !important; font-size: 15px !important; float: left; border-radius: 4px 0 0 4px !important" />
+                                <div id="header-search-btn-container" style=" width: 7%; float: right;">
+                                    <div id="header-search-btn" style="height: 40px; text-align: center; background-color: #FA2D18; float: right; padding-top: 6px; margin-top: 0px; width: 100%; cursor: pointer; border-radius: 0px 4px 4px 0px !important; border: 2px solid #FA2D18; border-left: 0; ">
+                                        <a class="icon-search-1" style="color: #fff; font-size: 20px; position:relative; top: 2px;"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-link">
+                            <div>
+                                <div class="menu-cart" style="float: right; height: 37px; text-align: center; position: relative; top: 9px; right: 1px;">
+                                    <a href="#">
+                                        <img class="top-shopping-cart" src="~/Images/cart-top.png" />
+                                        <span id="nav-cart-count" aria-hidden="true" class="nav-cart-count nav-cart-1" style="position: absolute; font-size: 15px; font-weight: 700; top: -5px; right: 10px; color: #ff7519; text-align: center; width: 15px;"></span>
+                                    </a>
+                                    <div class="menu-cart-item-container" style=" box-shadow: 0 0 10px rgba(0,0,0,.5); position: absolute; right: 0; display: none;">
+                                        <div class="menu-cart-items" style="max-height:400px; width:400px; overflow:auto; background-color: #fff;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="top-header" style="background-color: #FA2D18; height: 45px; position: fixed; top: 110px; width: 100%; box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05); z-index: 3; ">
+
+                <div class="top-header-app-view" style="display:none;">
+                    <div class="row" style="margin-top:10px; margin-left:5px;">
+                        <div class="col-sm-12">
+                            <div class="dropdown top-cat-menu-header" style="width: 120px !important; float:left; padding: 2px;">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img class="app-hide" src="/Images/list-white.png" style="height:20px;" />
+                                    <span class="menu-category-label">Categories</span>
+                                    <img src="/Images/down-arrow-white.png" style="height: 15px; margin-left: 5px;" />
+                                </a>
+
+                                <div class="dropdown-menu mega-menu top-cat-menu-container" style="display: none; overflow:auto; max-height: 300px; padding:10px;">
+                                    <div style="margin-top:15px; padding:10px; padding-top:5px; border-top:1px solid #dcdcdc;">
+                                        <div style="float:right;"><a href="/Product/Search?cat=0&loc=0&search=">See all categories</a></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="app-hide" style="float:left; margin-left:5px;">
+                                <a href="/Product/Search?cat=0&loc=0&search=&discount=yes&t=@{var ticks = DateTime.Now.Ticks.ToString(); @ticks;}" class="blink_me" style="margin-left:5px;">Special Offers</a>
+                            </div>
+                            <div style="float:right; margin-right: 15px;" class="top-bar-right">
+                                <a style="color: #fff;" href="/Home">Home</a>
+                                <a style="color: #fff;" href="/Order/OrderList">Orders</a>
+                                <a style="color: #fff;" href="/cart">View Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container top-header-desktop-view">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div>
+                                <nav class="menu home-page-menu" style="">
+                                    <ul class="header-icon-menu active" style="">
+                                        <li class="dropdown top-cat-menu-header" style="padding-left: 0 !important;position: relative; width: 230px !important; height:45px;">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration:none;">
+                                                <img src="/Images/list-white.png" style="height:24px;" />
+                                                <span class="menu-category-label">Categories</span>
+                                                <img src="/Images/down-arrow-white.png" style="height: 15px; margin-left: 5px;" />
+                                            </a>
+
+                                            <div class="dropdown-menu mega-menu top-cat-menu-container" style="display: none; max-height: 300px; width: 500px; padding:10px;">
+                                                <div style="margin-top:15px; padding:10px; padding-top:5px; border-top:1px solid #dcdcdc;">
+                                                    <div style="float:right;"><a href="/Product/Search?cat=0&loc=0&search=">See all categories</a></div>
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="app-hide">
+                                            <a href="/Product/Search?cat=0&loc=0&search=&discount=yes&t=@{var ticks1= DateTime.Now.Ticks.ToString(); @ticks1;}" class="blink_me" style="margin-left:5px; padding-left: 15px;">Explore Offers</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="text-align:right;">
+                            <div class="top-bar-right">
+                                <a href="/Home" style="border-left: 1px solid #dcdcdc;">Home</a>
+                                <a href="/Order/OrderList">Orders</a>
+                                <a href="/cart">View Cart</a>
+
+                                @*<a href="/AboutUs">About</a>
+                                    <a href="/Testimony">Testimonies</a>
+                                    <a href="/ContactUs">Contact</a>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+
+            <!-- Start Content -->
+            @*<div id="content" class="full-sections">
+                    <div class="container11 side-shadow">
+                        <div class="main-content" style="padding-bottom: 30px;">
+                            <div class="main-content-inner">
+                                <div class="page-content">
+                                    @RenderBody()
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+            <div class="container admin-container" style="margin-top: 0px;">
+
+                <div class="clearfix" style="background-color: #222d32; ">
+
+                    <div class="row11">
+                        <div class="col-md-999 admin-right-area" style="width:100%; float:left;">
+                            <div class="admin-content" style="min-height:500px; background-color:#fff;">
+                                <div id="myplace-right-section-container" style="background-color: #fff;  min-height: 303px; border: 1px solid #ebebeb; border-bottom:0;">
+                                    @RenderBody()
+                             
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback slider -->
+            @*<div id="feedback">
+                    <div id="feedback-form" style='display:none;' class="col-xs-4 col-md-4 panel panel-default">
+                        <div class="form-group">
+                            <input class="form-control" id="fb-email" name="email" autofocus placeholder="Your e-mail" type="email" />
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="fb-message" name="body" required placeholder="Please write your feedback here..." rows="5"></textarea>
+                        </div>
+                        <span id="fb-status-msg"></span>
+                        <button id="fb-btnSend" class="btn btn-primary pull-right" style="margin-left: 7px;" type="submit">Send</button>
+                        <button id="fb-btnClose" class="btn btn-default pull-right" type="submit">Close</button>
+                    </div>
+                    <div id="feedback-tab">Feedback</div>
+                </div>*@
+        </div>
+        <!-- End Container -->
+
+        <div id="img-pattern" style="visibility: visible;"></div>
+
+        <!-- Go To Top Link -->
+        <a href="#" class="back-to-top"><i class="icon-up-open-1"></i></a>
+
+        <!-- Footer -->
+        <section class="footer-bottom" style="font-size: 14px;">
+            <footer>
+
+                <div class="container">
+                    <div class="row app-hide btm_footer text-center footer-container" style="padding-top:25px;">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-3 bottom_nav">
+                            <div class="footer-header">
+                                Your Account
+                            </div>
+                            <ul class="footer-ul">
+                                <li><a href="/Security/Login">Sign In</a></li>
+                                <li><a href="/Account/Register">Create Account</a></li>
+                                <li><a href="/Customer/OrderList">Order Status</a></li>
+                                <li><a href="/Product/Search?cat=0&loc=0&search=&discount=yes">Special Offers</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-3 bottom_nav margin_btm_60">
+                            <div class="footer-header">
+                                Company
+                            </div>
+                            <ul class="footer-ul">
+                                <li><a href="/Static/PrivacyPolicy">Privacy Policy</a></li>
+                                <li><a href="/Static/CookiePolicy">Cookie Policy</a></li>
+                                <li><a href="/Static/TermsOfUse">Terms & Conditions</a></li>
+                                <li><a href="/Static/ContactUs">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-3 bottom_nav margin_btm_60">
+                            <div class="footer-header">
+                                Contact Us
+                            </div>
+                            <ul class="footer-ul">
+                                <li>Address: @{var address = Application.Common.Utils.GetSetting("CompanyAddress"); @address;}</li>
+                                <li>Email:  @{var email = Application.Common.Utils.GetSetting("CompanyEmail"); @email;}</li>
+                                <li>Contact No:  @{var hotline = Application.Common.Utils.GetSetting("CompanyPhone"); @hotline;}</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                    </div>
+
+                    <!-- For mobile view-->
+                    <div class="app-show" style="margin-top:15px; padding: 15px; display:none;">
+                        <div style="text-align:center;">
+                            <div class="bottom_nav margin_btm_60 center">
+                                <div class="footer-header" style="text-align: center; font-size: 18px; color: #fff; margin-bottom: 20px;">
+                                    Contact Us
+                                </div>
+                                <ul class="footer-ul">
+                                    <li>Address: @{var address1 = Application.Common.Utils.GetSetting("CompanyAddress"); @address1;}</li>
+                                    <li>Email:  @{var email1 = Application.Common.Utils.GetSetting("CompanyEmail"); @email1;}</li>
+                                    <li>Contact No:  @{var hotline1 = Application.Common.Utils.GetSetting("CompanyPhone"); @hotline1;}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-show" style="border-top: 1px solid #404040; margin-top:15px; padding: 15px; display:none;">
+                        <div style="text-align:center;">
+                            <div class="center">
+                                <a href="/Security/Login">Sign In</a>&nbsp;|&nbsp;<a href="/Account/Register">Create Account</a>&nbsp;|&nbsp;<a href="/Static/PrivacyPolicy">Privacy Policy</a>&nbsp;|&nbsp;<a href="/Static/TermsOfUse">Terms & Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End for mobile view-->
+
+                    <div style="border-top: 1px solid #404040; margin-top:15px; padding: 20px; padding-bottom:25px;">
+                        <div style="text-align:center;">
+                            <a class="app-icon" target="_blank" href="@{var appStoreLink = Application.Common.Utils.GetAppstoreLink(); @appStoreLink;}">
+                                <img src="/images/app_store_badge.svg" alt="Available on the App Store">
+                            </a>
+                            <a class="app-icon" target="_blank" href="@{var playStoreLink = Application.Common.Utils.GetPlaystoreLink(); @playStoreLink;}">
+                                <img src="/images/google_play_badge.png" style="height: 41px;" alt="Available on Play Store">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; padding: 10px; padding-top: 10px; border-top: 1px solid #404040;">
+                        <span style="font-size: 13px;">Copyright © @{var year = DateTime.Now.Year.ToString(); @year;} @{ var company = Application.Common.Utils.GetCompanyName(); @company }. All rights reserved.</span>
+                        <div style="padding:5px;">Developed by <a target="_blank" style="color:#fff; font-weight: 600;" href="#">[Company Name]</a></div>
+                    </div>
+                </div>
+            </footer>
+        </section>
+        <!-- End Footer -->
+
+    </div>
+
+
+    <script src="~/Scripts/Vendor/ngfile.js"></script>
+    @Scripts.Render("~/vendor")
+    @Scripts.Render("~/app")
+    @RenderSection("scripts", required: false)
+
+    <!------------------------- FOR SHOPPING CART & TOP MENU CATEGORY ----------------------->
+    <script type="text/javascript">
+
+        function LoadCategories() {
+
+            $.ajax({
+                dataType: "json",
+                url: '/Category/GetParentCategoryList',
+                data: {},
+                success: function (cats) {
+
+                    var htmlCatMenu = '<div class="row">';
+                    for (var i = 0; i < cats.length; i++) {
+
+                        if (i === 0) {
+                            htmlCatMenu += '<div class="col-md-4">';
+                        }
+                        else if (i === 10) {
+                            htmlCatMenu += '<div class="col-md-4">';
+                        }
+                        else if (i === 20) {
+                            htmlCatMenu += '<div class="col-md-4">';
+                        }
+
+                        htmlCatMenu += '<div style="padding:2px;"><a href="/Product/Search?cat=' + cats[i].Id + '">' + cats[i].Name + '</a></div>';
+
+                        if (i === 9) {
+                            htmlCatMenu += '</div>';
+                        }
+                        else if (i === 19) {
+                            htmlCatMenu += '</div>';
+                        }
+                        else if (i === 29) {
+                            htmlCatMenu += '</div>';
+                        }
+                    }
+
+                    htmlCatMenu += '</div>';
+
+                    $('.top-cat-menu-container').html(htmlCatMenu);
+
+                },
+                error: function (xhr) {
+
+                }
+            })
+        }
+
+        function builtCartItems() {
+
+            var totalQuantity = 0;
+            var totalAmount = 0;
+
+            var cart = getCart();
+
+            var html = '<table class="tbl-menu-cart-items">';
+
+            html += '<tr style="background-color:#f2f2f2; font-weight:600;">';
+            html += '<td>SN</td>';
+            html += '<td class="left-align">Name</td>';
+            html += '<td>Qty</td>';
+            html += '<td>Price</td>';
+            html += '</tr>';
+
+
+
+            for (var i = 0; i < cart.length; i++) {
+
+                var price = +(cart[i].Quantity * cart[i].OnlinePrice).toFixed(2);
+
+                html += '<tr>';
+
+                html += '<td>';
+                //html += '<img src="' + cart[i].ImageUrl + '" />';
+                html += i + 1;
+                html += '</td>';
+
+                html += '<td class="left-align">';
+                html += '<a href="/Product/Details?id=' + cart[i].Id + '">' + cart[i].Name + '</a>';
+                html += '</td>';
+
+                html += '<td>';
+                html += '<span>' + cart[i].Quantity + '</span>';
+                html += '</td>';
+
+                html += '<td>';
+                html += '<span>' + siteCurrency() + price + '</span>';
+                html += '</td>';
+
+                html += '</tr>';
+
+                totalQuantity += parseInt(cart[i].Quantity, 10);
+                totalAmount += price;
+            }
+            // Summary row
+            html += '<tr class="summary-row">';
+
+            html += '<td colspan="2">';
+            html += '<a class="theme-back-color" href="/cart" class="btn bm-button" style="float:left;padding: 8px;font-size: 13px;margin: 3px;background-color:#FA2D18; color: #fff;">Go To Cart</a>';
+            html += '<span style="float:right; position:relative; top:7px;">Total:</span>';
+            html += '</td>';
+
+            html += '<td>';
+            html += '<span>' + totalQuantity + '</span>';
+            html += '</td>';
+
+            html += '<td>';
+            html += '<span>' + siteCurrency() + totalAmount.toFixed(2) + '</span>';
+            html += '</td>';
+
+            html += '</tr>';
+            // End of summary row
+
+            html += '</table>';
+
+            $('.menu-cart-items').html(html);
+        }
+
+        function DetectResponsiveSize() {
+            var $window = $(window);
+
+            var windowsize = $window.width();
+            if (windowsize < 600) {
+
+            }
+        }
+
+        $(document).ready(function () {
+
+            DetectResponsiveSize();
+
+            LoadCategories();
+
+            // Show cart counter
+            var itemCount = getCartItemCount();
+
+            $('#nav-cart-count').html(itemCount);
+
+            $(".menu-cart").click(function () {
+
+                itemCount = getCartItemCount();
+                if (itemCount > 0) {
+                    if ($(".menu-cart-item-container").is(":visible") == true) {
+                        $('.menu-cart-item-container', this).fadeOut("fast");
+                    }
+                    else {
+                        builtCartItems();
+                        $('.menu-cart-item-container', this).fadeIn("fast");
+                    }
+                }
+            });
+
+            $(".menu-cart").mouseleave(function () {
+                if ($(".menu-cart-item-container").is(":visible") == true) {
+                    $('.menu-cart-item-container').fadeOut("fast");
+                }
+            });
+
+        });
+    </script>
+    <!------------------------- END SHOPPING CART ----------------------->
+    <!--Start of Tawk.to Script-->
+    @*<script type="text/javascript">
+            var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+            (function () {
+                var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+                s1.async = true;
+                s1.src = 'https://embed.tawk.to/5ef15d3d4a7c6258179b24cf/default';
+                s1.charset = 'UTF-8';
+                s1.setAttribute('crossorigin', '*');
+                s0.parentNode.insertBefore(s1, s0);
+            })();
+        </script>*@
+    <!--End of Tawk.to Script-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
+</body>
+
+</html>

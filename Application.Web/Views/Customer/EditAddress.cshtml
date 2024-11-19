@@ -1,0 +1,250 @@
+﻿
+@{
+    ViewBag.Title = "My Address";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+}
+
+<style type="text/css">
+    .pad-top{
+        padding-top:15px;
+    }
+</style>
+
+<div class="page-banner no-subtitle">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>My Address</h2>
+        </div>
+        <div class="col-md-6">
+            <ul class="breadcrumbs">
+                <li><a href="#">My Account</a></li>
+                <li>Address</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container11" style="padding:20px; padding-top:0;">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="form-group">
+                <div class="row">
+                    <span class="col-sm-3 right">Postal Code:</span>
+                    <div class="col-sm-4">
+                        <input type="text" id="zip" placeholder="Enter Postal Code" class="form-control" style="height: 30px;" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <span class="col-sm-3 right">State:</span>
+                    <div class="col-sm-4">
+                        <input type="text" id="state" placeholder="Enter State" class="form-control" style="height: 30px;" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <span class="col-sm-3 right">City:</span>
+                    <div class="col-sm-4">
+                        @*<input type="text" id="city" placeholder="Enter City" class="form-control" style="height: 30px;" />*@
+                        <select id="city" class=" form-control" style="height: 30px; ">
+                            <option value="0">Select City</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <span class="col-sm-3 right">Address:</span>
+                    <div class="col-sm-8">
+                        <textarea id="address" placeholder="Enter Address (House number, street, town/village)" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <span class="col-sm-3 right">Name:</span>
+                    <div class="col-sm-8">
+                        <input type="text" id="firstName" class="form-control" placeholder="Enter Your Name" style="height: 30px;" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <span class="col-sm-3 right">Mobile:</span>
+                    <div class="col-sm-8">
+                        <input type="text" id="mobile" class="form-control" placeholder="Enter Your Mobile" style="height: 30px;" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <span class="col-sm-3 right">Email:</span>
+                    <div class="col-sm-8">
+                        <input type="text" id="email" class="form-control" placeholder="Enter Your Email" style="height: 30px;" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <span class="col-sm-3 right"></span>
+                    <div class="col-sm-8">
+                        <button id="btnUpdateAddress" class="btn btn-primary theme-back-color">Update Address</button>
+                        <span style="margin-left:10px;" id="updateStatus"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--<div class="customer-address" style="margin-top:20px; background-color: #fff; border:1px solid #dcdcdc;">
+    <div style="border-bottom: 1px solid #dcdcdc; padding: 10px; background-color: #f2f2f2; ">
+        <span style="font-weight:600;">My Address</span>
+    </div>
+    <div style="padding:0px;">-->
+            @*<div class="row">
+            <div class="col-md-6">
+                First Name
+            </div>
+            <div class="col-md-6">
+                Last Name
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <input id="firstName" class="form-control" placeholder="First Name" />
+            </div>
+            <div class="col-md-6">
+                <input id="lastName" class="form-control" placeholder="Last Name" />
+            </div>
+        </div>
+
+        <div class="row pad-top">
+            <div class="col-md-12">
+                Mobile
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <input id="mobile" class="form-control" placeholder="Phone" />
+            </div>
+        </div>
+        <div class="row pad-top">
+            <div class="col-md-12">
+                Address
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <input id="address" class="form-control" placeholder="Address" />
+            </div>
+        </div>
+        <div class="row pad-top">
+            <div class="col-md-12">
+                Zip Code / Postal Code
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <input id="zip" class="form-control" placeholder="Zip Code" />
+            </div>
+        </div>
+        <div class="row pad-top">
+            <div class="col-md-12">
+                City
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <input id="city" class="form-control" placeholder="City" />
+            </div>
+        </div>
+        <div class="row pad-top">
+            <div class="col-md-12">
+                State
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <select name="state" id="state" ng-model="ShipState" class="form-control">
+                    <option value="">Select Prefecture</option>
+                    <option value="Aichi">Aichi</option>
+                    <option value="Akita">Akita</option>
+                    <option value="Aomori">Aomori</option>
+                    <option value="Chiba">Chiba</option>
+                    <option value="Ehime">Ehime</option>
+                    <option value="Fukui">Fukui</option>
+                    <option value="Fukuoka">Fukuoka</option>
+                    <option value="Fukushima">Fukushima</option>
+                    <option value="Gifu">Gifu</option>
+                    <option value="Gunma">Gunma</option>
+                    <option value="Hiroshima">Hiroshima</option>
+                    <option value="Hokkaido">Hokkaido</option>
+                    <option value="Hyogo">Hyogo</option>
+                    <option value="Ibaraki">Ibaraki</option>
+                    <option value="Ishikawa">Ishikawa</option>
+                    <option value="Iwate">Iwate</option>
+                    <option value="Kagawa">Kagawa</option>
+                    <option value="Kagoshima">Kagoshima</option>
+                    <option value="Kanagawa">Kanagawa</option>
+                    <option value="Kochi">Kochi</option>
+                    <option value="Kumamoto">Kumamoto</option>
+                    <option value="Kyoto">Kyoto</option>
+                    <option value="Mie">Mie</option>
+                    <option value="Miyagi">Miyagi</option>
+                    <option value="Miyazaki">Miyazaki</option>
+                    <option value="Nagano">Nagano</option>
+                    <option value="Nagasaki">Nagasaki</option>
+                    <option value="Nara">Nara</option>
+                    <option value="Niigata">Niigata</option>
+                    <option value="Oita">Oita</option>
+                    <option value="Okayama">Okayama</option>
+                    <option value="Okinawa">Okinawa</option>
+                    <option value="Osaka">Osaka</option>
+                    <option value="Saga">Saga</option>
+                    <option value="Saitama">Saitama</option>
+                    <option value="Shiga">Shiga</option>
+                    <option value="Shimane">Shimane</option>
+                    <option value="Shizuoka">Shizuoka</option>
+                    <option value="Tochigi">Tochigi</option>
+                    <option value="Tokushima">Tokushima</option>
+                    <option value="Tokyo">Tokyo</option>
+                    <option value="Tottori">Tottori</option>
+                    <option value="Toyama">Toyama</option>
+                    <option value="Wakayama">Wakayama</option>
+                    <option value="Yamagata">Yamagata</option>
+                    <option value="Yamaguchi">Yamaguchi</option>
+                    <option value="Yamanashi">Yamanashi</option>
+                </select>
+            </div>
+        </div>
+            *@
+            @*<div class="row pad-top">
+            <div class="col-md-12">
+                Country
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <input id="country" class="form-control" placeholder="Country" />
+            </div>
+        </div>*@
+
+            <!--<!--------------------------------------- START ---------------------------------->
+            <!--------------------------------------- END ---------------------------------->-->
+
+
+
+            <!--@*<div class="row pad-top">
+                <div class="col-md-12">
+                    <button id="btnUpdateAddress" class="btn btn-primary theme-back-color">Update Address</button>
+                    <span style="margin-left:10px;" id="updateStatus"></span>
+                </div>
+            </div>*@
+        </div>
+    </div>-->
+        </div>        
+    </div>        
+</div>
+

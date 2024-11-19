@@ -1,0 +1,176 @@
+@{
+    ViewBag.Title = "";
+    // Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+
+
+<style type="text/css">
+    .order-mode {
+        border: 1px solid #dcdcdc;
+        padding: 10px;
+        margin-right: 5px;
+    }
+
+    .order-mode-active {
+        background-color: #f2f2f2;
+        font-weight: 600;
+    }
+</style>
+
+<form name="myForm" novalidate>
+    <div ng-controller="HomeCtrl" class="form-horizontal">
+
+        <div style="border: 1px solid #dcdcdc; padding-top: 20px; padding-bottom:20px;">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Category</label>
+                            <div class="col-sm-8">
+                                <div class="input-group" style="width:100%;">
+                                    <select class="form-control" name="orderMode" id="category">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Order Date</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input class="form-control date-picker" id="orderDate" type="text" data-date-format="yyyy-mm-dd">
+                                    <span class="calendar-control input-group-addon">
+                                        <i class="fa fa-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @*<div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Products</label>
+                                <div class="col-sm-8">
+                                    <select id="products" name="branch" class="form-control form-group-margin">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>*@
+                </div>
+
+
+
+
+                <div class="row right">
+                    @*<div class="col-lg-12">
+                            <button id="add-to-cart" class="btn btn-primary">Add to cart</button>
+                        </div>*@
+                </div>
+            </div>
+
+        </div>
+        <div style="overflow:auto">
+            <table id="data-table-admin-products" class="table table-striped table-bordered table-hover" style="width: 100%;"></table>
+        </div>
+        @*<br />
+            <div class="row">
+                <div class="col-md-12">
+                    <a id="All" class="order-mode" href="#">All</a>
+                    <a id="Store" class="order-mode" href="#">Store</a>
+                    <a id="Online" class="order-mode" href="#">Online</a>
+                    <a id="PhoneOrder" class="order-mode" href="#">Phone Order</a>
+                </div>
+            </div>*@
+
+    </div>
+</form>
+
+
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width: 60%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel">Product Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Product Name</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="produt-name" type="text">
+                                </textarea>
+                                <input class="form-control hidden" id="product-id" type="text" hidden />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Weight</label>
+                            <div class="col-sm-8">
+                                <div class="input-group" style="width:100%;">
+                                    <input class="form-control" id="product-weight" type="number" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Unit</label>
+                            <div class="col-sm-8">
+                                <div class="input-group" style="width:100%;">
+                                    <input class="form-control" id="product-unit" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Price</label>
+                            <div class="col-sm-8">
+                                <div class="input-group" style="width:100%;">
+                                    <input class="form-control" id="product-price" type="number" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Quantity</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" id="produt-quantity" type="number" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Discount</label>
+                            <div class="col-sm-8">
+                                <div class="input-group" style="width:100%;">
+                                    <input class="form-control" id="product-discount" type="number" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="add-to-cart" class="btn btn-primary">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

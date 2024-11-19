@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewBag.Title = "Daily Sales Report";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+
+<style type="text/css">
+    #myplace-right-section-container{
+        min-height: initial !important;
+    }
+</style>
+
+<div class="page-banner no-subtitle">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Daily Sales &nbsp; <span id="order-status"></span></h2>
+        </div>
+        <div class="col-md-6">
+            <ul class="breadcrumbs">
+                <li><a href="#">Report</a></li>
+                <li>Daily Sales</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<form name="myForm" novalidate>
+    <div ng-controller="ReportDailySalesCtrl" class="form-horizontal">
+
+        <div style="border: 1px solid #dcdcdc; padding-top: 20px; padding-bottom:20px; margin: 10px;">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Branch</label>
+                            <div class="col-sm-8">
+                                <select id="branch" name="branch" class="form-control form-group-margin">
+                                    <option value="">All Branches</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">From Date</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input class="form-control date-picker" id="dateFrom" type="text" data-date-format="yyyy-mm-dd">
+                                    <span class="calendar-control input-group-addon">
+                                        <i class="fa fa-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">To Date</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <input class="form-control date-picker" id="dateTo" type="text" data-date-format="yyyy-mm-dd">
+                                    <span class="calendar-control input-group-addon">
+                                        <i class="fa fa-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Order Mode</label>
+                            <div class="col-sm-8">
+                                <div class="input-group" style="width:100%;">
+                                    <select class="form-control" name="orderMode" id="orderMode">
+                                        <option value="">All</option>                                        
+                                        <option value="Online">Online</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Order Status</label>
+                            <div class="col-sm-8">
+                                <div class="input-group" style="width:100%;">
+                                    <select class="form-control" name="orderStatus" id="orderStatus">
+                                        <option value="">All</option>
+                                        <option value="Processing">Processing</option>
+                                        <option value="Completed">Completed</option>                                        
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row right">
+                    <div class="col-lg-12">
+                        <button id="btnReportDailySales" ng-click="showReport()" class="btn btn-primary">Show Report</button>
+                    </div>                    
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="row" style="margin-top:20px;">
+            <div class="col-sm-12">
+                <div class="item-loading">
+                    <img src="~/Images/ajax-loader.gif" /> Loading...
+                </div>
+                <div style="overflow:auto">
+                    <table id="data-table-daily-sales" class="table table-striped table-bordered table-hover" style="width: 100%;">
+                        <tfoot id="fotter-sum" style="display:none;">
+                            <tr>
+                                <th colspan="5" style="text-align:right;">Total:</th>                                
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

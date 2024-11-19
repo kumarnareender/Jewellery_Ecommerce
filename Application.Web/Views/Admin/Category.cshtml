@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Product Category";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+<div class="page-banner no-subtitle">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Categories</h2>
+        </div>
+        <div class="col-md-6">
+            <ul class="breadcrumbs">
+                <li><span><b>Admin</b></span></li>
+                <li>Product Category</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div ng-controller="CategoryCtrl" ng-cloak>
+    <div style="width: 100%;" class="mobile-view-overflow">
+        <table class="table table-bordered table-condensed table-hover setup-form">
+            <tr class="setup-table-header">
+                <th style="text-align:left;">
+                    <div class="btn-toolbar">
+                        <button type="submit" class="btn btn-sm btn-primary" ng-click="toggleAddMode()"><span class="glyphicon glyphicon-plus"></span> Add</button>
+                    </div>
+                </th>
+                <th style="width:220px;">Category</th>
+                <th class="center" style="width: 200px;">Parent Category</th>
+                <th class="center" style="width: 200px;">Published</th>
+                <th class="center" style="width: 200px;">Show Homepage</th>
+                <th class="center" style="width: 200px;">Display Order</th>
+            </tr>
+            <tr ng-show="addMode">
+                <td>
+                    <div class="btn-toolbar" style="width:200px;">
+                        <div class="setup-btn-group">
+                            <button type="submit" class="btn btn-sm btn-primary" ng-click="createCategory()"><span class="glyphicon glyphicon-ok"></span> Save</button>
+                            <button type="submit" style="margin-left:10px;" class="btn btn-sm btn-default" ng-click="toggleAddMode()"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <input ng-model="category.Name" style="width: 200px;" />
+                </td>
+                <td class="center">
+                    <select ng-model="category.ParentId" class="form-control form-group-margin center" ng-options="category.Id as category.Name for category in categoryList" style="width:200px;">
+                        <option value="">---Parent Category---</option>
+                    </select>
+                </td>
+                <td class="center">
+                    <input type="checkbox" ng-model="category.IsPublished" class="setup-form-input" style="width:50px;" />
+                </td>
+                <td class="center">
+                    <input type="checkbox" ng-model="category.ShowInHomepage" class="setup-form-input" style="width:50px;" />
+                </td>
+                <td class="center">
+                    <input ng-model="category.DisplayOrder" style="width: 100px;" />
+                </td>
+            </tr>
+            <tr ng-repeat="category in categoryList | orderBy:'Name':false">
+                <td>
+                    <div class="btn-toolbar" ng-show="category.editMode == null || category.editMode == false" style="width:250px;">
+                        <div class="setup-btn-group">
+                            <button type="submit" class="btn btn-sm btn-success" ng-click="toggleEditMode(category)"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+                            <button type="submit" style="margin-left:10px;" class="btn btn-sm btn-danger" ng-click="deleteCategory(category)"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                            <button type="submit" style="margin-left:10px;" class="btn btn-sm btn-warning" ng-click="addPhoto(category)"><span class="glyphicon glyphicon-plus"></span> Photo</button>
+                        </div>
+                    </div>
+                    <div class="btn-toolbar" ng-show="category.editMode == true" style="width:200px;">
+                        <div class="setup-btn-group">
+                            <button type="submit" class="btn btn-sm btn-primary" ng-click="updateCategory(category)"><span class="glyphicon glyphicon-ok"></span> Update</button>
+                            <button type="submit" style="margin-left:10px;" class="btn btn-sm btn-default" ng-click="toggleEditMode(category)"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <span ng-show="category.editMode == null || category.editMode == false">{{category.Name}} (Id: {{category.Id}})</span>
+                    <input ng-model="category.Name" ng-show="category.editMode == true" style="width: 200px;" />
+                </td>
+                <td class="center">
+                    <span ng-show="category.editMode == null || category.editMode == false">{{category.ParentName}}</span>
+                    <select ng-model="category.ParentId" name="ParentId" ng-show="category.editMode == true" class="form-control form-group-margin center" ng-options="category.Id as category.Name for category in categoryList" style="width:200px;">
+                        <option value="">---Parent Category---</option>
+                    </select>
+                </td>
+                <td class="center">
+                    <span ng-show="category.editMode == null || category.editMode == false">{{category.IsPublished}}</span>
+                    <input type="checkbox" ng-model="category.IsPublished" ng-show="category.editMode == true" class="setup-form-input" style="width:50px;" />
+                </td>
+                <td class="center">
+                    <span ng-show="category.editMode == null || category.editMode == false">{{category.ShowInHomepage}}</span>
+                    <input type="checkbox" ng-model="category.ShowInHomepage" ng-show="category.editMode == true" class="setup-form-input" style="width:50px;" />
+                </td>
+                <td class="center">
+                    <span ng-show="category.editMode == null || category.editMode == false">{{category.DisplayOrder}}</span>
+                    <input ng-model="category.DisplayOrder" ng-show="category.editMode == true" style="width: 100px;" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,448 @@
+﻿@{
+    ViewBag.Title = "Bulk Product Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .section-container {
+        border: 1px solid #d8d6d9;
+    }
+
+        .section-container > .s-title {
+            background-color: #fafafa;
+            border-bottom: 1px solid #d8d6d9;
+            padding: 8px;
+            padding-left: 13px;
+            color: #444;
+        }
+
+        .section-container > .s-body {
+            padding: 15px;
+            background-color: #fff;
+        }
+
+    .fileUpload {
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+        position: relative;
+        left: 8px;
+        margin-bottom: -142px;
+    }
+
+        .fileUpload input.upload {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+    .product-img-client {
+        height: 140px;
+        width: 140px;
+        border: 2px dashed #dcdcdc;
+        padding: 5px;
+        background-image: url(/images/no-image.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: #f1f1f1;
+    }
+
+    .image-table tr td {
+        padding: 10px;
+    }
+
+    .btn-clear {
+        color: red;
+        cursor: pointer;
+        position: relative;
+        left: 127px;
+    }
+
+        .btn-clear i {
+            font-size: 18px;
+        }
+
+    #btnPhotoCancel1, #btnPhotoCancel2, #btnPhotoCancel3, #btnPhotoCancel4, #btnPhotoCancel5, #btnPhotoCancel6 {
+        display: none;
+        z-index: 99;
+    }
+
+    .cancel-div {
+        height: 23px;
+        margin-bottom: -34px;
+    }
+
+    select option {
+        cursor: pointer;
+    }
+
+    .product-post-user-info tr td {
+        padding: 5px;
+    }
+
+    /*---------- Testing ----------------*/
+    .column {
+        border: 0;
+        height: 250px !important;
+        width: 100%;
+    }
+
+        .column option {
+            padding: 10px;
+            border-bottom: 1px solid #dcdcdc;
+        }
+
+    .category-picker .col-md-3, .location-picker .col-md-3 {
+        border-right: 1px solid #dcdcdc;
+        height: 250px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    /*---------- End Testing ----------------*/
+
+    #btnEditCategory, #btnEditLocation, #btnLocationContinue, #btnCategoryContinue {
+        float: right;
+        font-size: 15px;
+        padding: 8px;
+        padding-left: 30px;
+        padding-right: 30px;
+        font-weight: 600;
+    }
+
+    .btn-active {
+        background-color: #e57373;
+        color: #fff;
+        pointer-events: all;
+        cursor: pointer;
+    }
+
+        .btn-active:hover {
+            color: #fff;
+        }
+
+    .btn-disable {
+        border: 1px solid #dbdadb;
+        background: #fafafa;
+        pointer-events: none;
+        color: rgba(0,0,0,.2);
+    }
+
+    .selectedCategoryText, .selectedLocationText {
+        position: relative;
+        top: 5px;
+    }
+
+    .product-post-section-text {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .product-post-section-hint {
+        font-size: 14px;
+        padding-left: 4px;
+        font-style: italic;
+    }
+
+    .field-caption {
+        font-size: 13px;
+        color: #3c3241;
+        text-align: left !important;
+    }
+
+    .field-caption-adjust {
+        position: relative;
+        top: 20px;
+    }
+
+    .help-text {
+    }
+
+    .adjust-top {
+        position: relative;
+        top: 23px;
+    }
+
+    .adjust-price-top {
+        position: relative;
+        top: 47px;
+    }
+
+    #productImage1, #productImage2, #productImage3, #productImage4, #productImage5, #productImage6 {
+        display: none;
+    }
+
+    .date .input-group-addon {
+        cursor: pointer;
+    }
+
+    .btn-submit {
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        background-color: #ff5a60 !important;
+        padding: 12px !important;
+        width: 300px;
+        text-transform: initial !important;
+    }
+
+    .Short-width{
+        width:120px;
+    }
+
+    .table-entry>tbody > tr > td {
+        vertical-align: middle;
+    }
+    #feedback{
+        display:none;
+    }
+
+    #header-fixed {
+        position: fixed;
+        top: 125px;
+        display: none;
+        background-color: white;
+        z-index: 9999;
+    }
+
+
+</style>
+
+
+<div class="container11">
+    
+    <span style="font-size:22px; padding:15px;">Bulk Product Entry</span>
+
+    <form name="myForm" novalidate>
+        <div ng-controller="bulkPostProductCtrl" class="form-horizontal" style="padding:15px;">
+
+            <div>
+                <div style="background-color: #f2f2f2; padding: 20px; border: 1px solid #dcdcdc;">
+                    <div class="section-container">
+                        <div class="s-title">
+                            <span class="product-post-section-text">Store Branch</span>
+                        </div>
+                        <div class="s-body">
+
+                            <div class="row form-group">
+                                <div class="col-sm-5">
+                                    <div class="field-caption control-label">Select Branch</div>
+                                    <select id="branch" ng-model="branchId" name="branchId" class="form-control form-group-margin" ng-options="branch.Id as branch.Name for branch in branchList">
+                                        <option value="">Select Branch</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="section-container" id="category-container">
+                        <div class="s-title">
+                            <span class="product-post-section-text">Product Category</span>
+                        </div>
+                        <div class="s-body">
+                            <div class="row category-picker" style="border:1px solid #dcdcdc; margin-left:0; margin-right:0;">
+                                <div class="col-md-3">
+                                    <select name="oneSelectBulkPost" tabindex="1" class="column" size="10" id="oneSelectBulkPost"></select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select name="twoSelectBulkPost" tabindex="2" class="column" size="10" id="twoSelectBulkPost" style="display: none"></select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select name="threeSelectBulkPost" tabindex="3" class="column" size="10" id="threeSelectBulkPost" style="display: none"></select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select name="fourSelectBulkPost" tabindex="4" class="column last" size="10" id="fourSelectBulkPost" style="display: none"></select>
+                                </div>
+                            </div>
+                            <div class="row cat-continue-section" style="margin-top: 12px;">
+                                <div class="col-md-12">
+                                    <a id="btnCategoryContinue" class="btn-disable" style="float:right;">Continue</a>
+                                </div>
+                            </div>
+                            <div class="row cat-edit-section" style="display:none;">
+                                <div class="col-md-8">
+                                    <span class="selectedCategoryText"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <a id="btnEditCategory" class="btn-active" style="float:right;">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+
+                <br />
+                <hr style="border-top:1px solid green;" />
+                <br />
+
+                <div id="general-container" class="tblHeader" style="overflow: scroll;">
+                    <table id="table-1" class="table-entry table table-bordered table-striped" style="width:2400px;">
+                        <thead style="background-color: #fff;">
+                            <tr style="font-weight: 600;">
+                                <td style="width:50px;">
+                                    SL
+                                </td>
+                                <td style="width:170px;">
+                                    Barcode
+                                </td>
+                                <td style="width:220px;">
+                                    Title
+                                </td>
+                                <td style="width: 80px;">
+                                    Short Code
+                                </td>
+                                <td style="width:100px;">
+                                    Quantity
+                                </td>
+                                <td style="width:100px;">
+                                    Stock Alert
+                                </td>
+                                <td style="width:180px;">
+                                    Weight
+                                </td>
+                                <td class="Short-width">
+                                    Cost Price
+                                </td>
+                                <td class="Short-width">
+                                    Retail Price
+                                </td>
+                                <td class="Short-width">
+                                    Wholesale Price
+                                </td>
+                                <td class="Short-width">
+                                    Online Price
+                                </td>
+                                <td style="width: 100px;">
+                                    Discount
+                                </td>
+                                <td style="width: 150px;">
+                                    Item Type
+                                </td>
+                                <td style="width:170px;">
+                                    Expire Date
+                                </td>
+                                <td style="width: 180px;">
+                                    Supplier
+                                </td>
+                                <td style="width:150px;">
+                                    Attribute
+                                </td>
+                                <td style="width: 350px;">
+                                    Description
+                                </td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in productList">
+                                <td>
+                                    <span style="font-weight:600;"> {{item.SL}} </span>
+                                </td>
+                                <td>
+                                    <input ng-model="item.Barcode" class="form-control" required>
+                                </td>
+                                <td>
+                                    <input id="title-{{item.SL}}" ng-model="item.Title" class="form-control">
+                                </td>
+                                <td>
+                                    <input ng-model="item.ShortCode" class="form-control">
+                                </td>
+                                <td>
+                                    <input type="number" ng-model="item.Quantity" ng-keydown="numberOnly($event)" class="form-control">
+                                </td>
+                                <td>
+                                    <input type="number" ng-model="item.LowStockAlert" ng-keydown="numberOnly($event)" class="form-control">
+                                </td>
+                                <td>
+                                    <input ng-model="item.Weight" type="number" class="form-control" style="float:left; width:80px;" />
+                                    <select ng-model="item.Unit" name="unit" class="form-control ctl-input form-group-margin" style="width: 70px; margin-left: 0px; float: right; height: 34px;">
+                                        <option selected="selected" value="gm">gm</option>
+                                        <option value="kg">kg</option>
+                                        <option value="lt">lt</option>
+                                        <option value="ml">ml</option>
+                                        <option value="pc">pc</option>
+                                        <option value="GB">GB</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="number" ng-model="item.CostPrice" ng-keydown="numberOnly($event)" class="form-control">
+                                </td>
+                                <td>
+                                    <input type="number" ng-model="item.RetailPrice" ng-keydown="numberOnly($event)" class="form-control">
+                                </td>
+                                <td>
+                                    <input type="number" ng-model="item.WholesalePrice" ng-keydown="numberOnly($event)" class="form-control">
+                                </td>
+                                <td>
+                                    <input type="number" ng-model="item.OnlinePrice" ng-keydown="numberOnly($event)" class="form-control">
+                                </td>
+                                <td>
+                                    <input type="number" ng-model="item.Discount" ng-keydown="numberOnly($event)" class="form-control">
+                                </td>
+                                <td>
+                                    <select ng-model="item.ItemTypeId" name="itemTypeId" class="form-control form-group-margin" ng-options="itemType.Id as itemType.Name for itemType in itemTypeList">
+                                        <option value="">Select</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <input id="expireDate-{{item.SL}}" class="form-control date-picker expireDate" ng-model="item.ExpireDate" name="expireDate" type="text" data-date-format="yyyy-mm-dd">
+                                        <span class="calendar-control input-group-addon">
+                                            <i class="fa fa-calendar bigger-110"></i>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <select ng-model="item.SupplierId" name="supplierId" class="form-control form-group-margin" ng-options="supplier.Id as supplier.Name for supplier in supplierList">
+                                        <option value="">Select</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td><input type="checkbox" ng-model="item.IsFrozen" /></td>
+                                            <td>&nbsp;Frozen</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" ng-model="item.IsFeatured" /></td>
+                                            <td>&nbsp;Homepage</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" ng-model="item.IsInternal" /></td>
+                                            <td>&nbsp;Internal</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" ng-model="item.IsFastMoving" /></td>
+                                            <td>&nbsp;Fast Moving</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" ng-model="item.IsMainItem" /></td>
+                                            <td>&nbsp;Main Item</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <textarea name="description" ng-model="item.Description" class="form-control ctl-input" rows="2"></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @*<table id="header-fixed" class="table-entry table table-bordered table-striped" style="width:2200px;"></table>*@
+                </div>
+
+                <div class="center" style="margin-top:20px;">
+                    <a id="btnPostProduct" class="btn btn-default btn-submit" style="color: #fff;" ng-click="postProduct()">Save Product</a>
+                    <div class="post-product-status" style="padding-top: 10px; display: none;">
+                        <img src="~/Images/ajax-loader-small.gif" />
+                        <span style="font-weight: 600;">Posting Your Product...</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,335 @@
+﻿
+@{
+    ViewBag.Title = "Testimonies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>*@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    @*<style>
+            .testimonial {
+                background: #fff;
+                text-align: center;
+                margin: 0 20px;
+            }
+
+                .testimonial .description {
+                    padding: 40px 30px;
+                    margin-bottom: 50px;
+                    border-top: 1px solid #2660a4;
+                    border-left: 1px solid #2660a4;
+                    font-size: 15px;
+                    color: #887e7f;
+                    line-height: 30px;
+                    text-align: left;
+                    position: relative;
+                }
+
+                    .testimonial .description:before {
+                        content: "\f10e";
+                        font-family: "Font Awesome 5 Free";
+                        font-weight: 900;
+                        display: inline-block;
+                        float: left;
+                        padding: 0 15px 5px 0;
+                        font-size: 30px;
+                        color: #ff5a5f;
+                        text-align: center;
+                        position: relative;
+                        top: 8px;
+                        left: 0;
+                    }
+
+                    .testimonial .description:after {
+                        content: "";
+                        width: 50%;
+                        height: 1px;
+                        background: #2660a4;
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                    }
+
+                .testimonial .testimonial-content {
+                    position: relative;
+                }
+
+                    .testimonial .testimonial-content:before {
+                        content: "";
+                        width: 1px;
+                        height: 20px;
+                        background: #2660a4;
+                        position: absolute;
+                        top: -50px;
+                        left: 50%;
+                    }
+
+                    .testimonial .testimonial-content:after {
+                        content: "";
+                        width: 2px;
+                        height: 40px;
+                        background: #2660a4;
+                        position: absolute;
+                        top: -70px;
+                        left: 50%;
+                        transform: skewX(-45deg);
+                        transform-origin: 100% 100% 0;
+                    }
+
+                .testimonial .pic {
+                    display: inline-block;
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    margin-right: 7px;
+                }
+
+                    .testimonial .pic img {
+                        width: 100%;
+                        height: auto;
+                        border-radius: 50%;
+                    }
+
+                .testimonial .title {
+                    display: inline-block;
+                    font-size: 22px;
+                    font-weight: 700;
+                    color: #2660a4;
+                    letter-spacing: 1px;
+                    text-transform: capitalize;
+                }
+
+            .owl-theme .owl-controls {
+                margin-top: 30px;
+            }
+
+                .owl-theme .owl-controls .owl-page span {
+                    width: 15px;
+                    height: 10px;
+                    border-radius: 0;
+                    background: #ff5a5f;
+                    opacity: 0.8;
+                    transition: all 0.3s ease 0s;
+                }
+
+                .owl-theme .owl-controls .owl-page.active span {
+                    width: 35px;
+                    background: #2660a4;
+                }
+        </style>*@
+
+    <style>
+        .demo {
+            background: #f8f8f8;
+        }
+
+        .testimonial {
+            margin: 0 20px 40px;
+        }
+
+            .testimonial .testimonial-content {
+                padding: 35px 25px 35px 50px;
+                margin-bottom: 35px;
+                background: #fff;
+                border: 1px solid #f0f0f0;
+                position: relative;
+            }
+
+                .testimonial .testimonial-content:after {
+                    content: "";
+                    display: inline-block;
+                    width: 20px;
+                    height: 20px;
+                    background: #fff;
+                    position: absolute;
+                    bottom: -10px;
+                    left: 22px;
+                    transform: rotate(45deg);
+                }
+
+        .testimonial-content .testimonial-icon {
+            width: 50px;
+            height: 45px;
+            background: #ff4242;
+            text-align: center;
+            font-size: 22px;
+            color: #fff;
+            line-height: 42px;
+            position: absolute;
+            top: 37px;
+            left: -19px;
+        }
+
+            .testimonial-content .testimonial-icon:before {
+                content: "";
+                border-bottom: 16px solid #e41212;
+                border-left: 18px solid transparent;
+                position: absolute;
+                top: -16px;
+                left: 1px;
+            }
+
+        .testimonial .description {
+            font-size: 15px;
+            font-style: italic;
+            color: #8a8a8a;
+            line-height: 23px;
+            margin: 0;
+        }
+
+        .testimonial .title {
+            display: block;
+            font-size: 18px;
+            font-weight: 700;
+            color: #525252;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            margin: 0 0 5px 0;
+        }
+
+        .testimonial .post {
+            display: block;
+            font-size: 14px;
+            color: #ff4242;
+        }
+
+        .owl-theme .owl-controls {
+            margin-top: 20px;
+        }
+
+            .owl-theme .owl-controls .owl-page span {
+                background: #ccc;
+                opacity: 1;
+                transition: all 0.4s ease 0s;
+            }
+
+            .owl-theme .owl-controls .owl-page.active span,
+            .owl-theme .owl-controls.clickable .owl-page:hover span {
+                background: #ff4242;
+            }
+    </style>
+
+</head>
+<body>
+    <h2 class="center">Testimonies</h2>
+    @*<p>This is small empty testimony for testing purpose</p>*@
+
+
+    @*<div>
+            <textarea id=""></textarea>
+
+            <button class="btn btn-primary" id="addTestimony">Add</button>
+
+        </div>*@
+
+
+
+
+    <div id="add-testimonies-section" class="customer-address" style="margin-top:20px; background-color: #fff; border:1px solid #dcdcdc;">
+            <div style="border-bottom: 1px solid #dcdcdc; padding: 10px; background-color: #f2f2f2; ">
+            </div>
+            <div style="padding:20px;">
+
+                <div class="form-group">
+                    <div class="row">
+                        <span class="col-sm-3 right">Description:</span>
+                        <div class="col-sm-8">
+                            <textarea type="text" id="testimonyDescription" class="form-control" placeholder="Enter testimony" style="height: 100px;" required></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <span class="col-sm-3 right"></span>
+                        <div class="col-sm-8">
+                            <button id="addTestimony" class="btn btn-primary">Add Testimony</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    @*<div id="add-testimonies-section" class="customer-address" style="margin-top:20px; background-color: #fff; border:1px solid #dcdcdc;">
+            <div style="border-bottom: 1px solid #dcdcdc; padding: 10px; background-color: #f2f2f2; ">
+                <span style="font-weight:600;">Add Testimony</span>
+            </div>
+            <div style="padding:20px;">
+
+                <div id="_testimonies">
+
+                </div>
+
+            </div>
+        </div>*@
+
+
+    <div class="demo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="testimonial-slider" class="owl-carousel">
+                        @*<div class="testimonial">
+                            <div class="testimonial-content">
+                                <div class="testimonial-icon">
+                                    <i class="fa fa-quote-left"></i>
+                                </div>
+                                <p class="description">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum dolor sit amet eros imperdiet, sit amet hendrerit nisi vehicula.
+                                </p>
+                            </div>
+                            <h3 class="title">williamson</h3>
+                        </div>
+
+                        <div class="testimonial">
+                            <div class="testimonial-content">
+                                <div class="testimonial-icon">
+                                    <i class="fa fa-quote-left"></i>
+                                </div>
+                                <p class="description">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum dolor sit amet eros imperdiet, sit amet hendrerit nisi vehicula.
+                                </p>
+                            </div>
+                            <h3 class="title">Kristina</h3>
+                        </div>
+
+                        <div class="testimonial">
+                            <div class="testimonial-content">
+                                <div class="testimonial-icon">
+                                    <i class="fa fa-quote-left"></i>
+                                </div>
+                                <p class="description">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum dolor sit amet eros imperdiet, sit amet hendrerit nisi vehicula.
+                                </p>
+                            </div>
+                            <h3 class="title">Kristinaabc</h3>
+                        </div>
+
+                        <div class="testimonial">
+                            <div class="testimonial-content">
+                                <div class="testimonial-icon">
+                                    <i class="fa fa-quote-left"></i>
+                                </div>
+                                <p class="description">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum dolor sit amet eros imperdiet, sit amet hendrerit nisi vehicula.
+                                </p>
+                            </div>
+                            <h3 class="title">williamson</h3>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

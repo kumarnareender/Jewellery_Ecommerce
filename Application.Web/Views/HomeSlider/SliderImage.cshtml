@@ -1,0 +1,170 @@
+﻿@{
+    ViewBag.Title = "Slider Images";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+
+<style type="text/css">
+    table {
+        border-collapse: collapse;
+    }
+
+    td {
+        padding: 6px;
+    }
+
+    .fileUpload {
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+    }
+
+    .fileUpload input.upload {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+
+    .photo-additional {
+        color: blue;
+        font-weight: 600;
+    }
+
+    .photo-primary {
+        font-weight: 600;
+        color: green;
+    }
+</style>
+
+<div class="page-banner no-subtitle">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Slider Images</h2>
+        </div>
+        <div class="col-md-6">
+            <ul class="breadcrumbs">
+                <li><a href="#">Administration</a></li>
+                <li>Slider Images</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<form name="myForm" novalidate>
+    <div ng-controller="homeSliderCtrl" class="form-horizontal">
+
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div style=" border: 1px solid #dcdcdc; text-align: center; overflow: auto;">
+
+                    <table style="margin: 0 auto; width:100%;">
+                        <tr>
+                            <td colspan="3" style="text-align:center; padding:10px; background-color: #f2f2f2; border-bottom: 1px solid #dcdcdc;">
+                                <span style="font-size:15px;">Upload Slider Images</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50%;">
+                                <table style="width:100%;">                                    
+                                    <tr>
+                                        <td class="center">
+                                            <div class="fileUpload btn btn-primary center">
+                                                <span>Browse Image</span>
+                                                <input id="inputFile" type="file" class="upload" name="file" accept="image/*" onchange="angular.element(this).scope().selectPhoto(this.files)" required />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center">
+                                            <b>Note:</b> Width: 1400px, Height: 400px, File Format: .jpg, Size: max 1mb
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="border-left: 1px solid #dcdcdc;"></td>
+                            <td>
+                                <table style="width:100%;">
+                                    <tr>
+                                        <td style="text-align: center;">
+                                            <div style="width: 277px; height: 90px; border:2px dashed #808080; padding:5px; margin: auto;">
+                                                <img id="imgTemp" style="height: 100%; width: 100%;" src="~/Images/no-image.png" alt="your image" />
+                                            </div>
+                                            <div id="divSavePhoto" class="center" style="padding:5px; border:1px solid #dcdcdc; margin-top: 2px; width:277px; margin:auto; display: none;">
+
+                                                <table style="width: 100%;">
+                                                    <tr>
+                                                        <td>
+                                                            Url
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" ng-model="Url" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Display Order
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" ng-model="DisplayOrder" />
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+                                                <button id="btnUploadPhoto" type="submit" ng-click="uploadPhoto()" class="btn btn-primary">Save</button>
+                                                <button id="btnPhotoCancel" type="submit" class="btn btn-default">Cancel</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group div-my-photo-container" style="padding:20px;">
+            <div class="col-sm-12 mobile-view-overflow">
+                <table border="1" style="width: 100%; border: 1px solid #ccc;">
+                    <tr style="background-color: #f1f1f1; font-weight: 600;">
+                        <td class="center">
+                            Slider Image
+                        </td>
+                        <td class="left">
+                            Url
+                        </td>
+                        <td class="center">
+                            Display Order
+                        </td>
+                        <td class="center">
+                            Delete
+                        </td>
+                    </tr>
+                    <tr ng-repeat="photo in photoList">
+                        <td class="center">
+                            <img alt="" style="height:100px;" ng-src="/Images/Slider/{{photo.ImageName}}" />
+                        </td>
+                        <td>
+                            <a href="http://{{photo.Url}}" target="_blank">{{photo.Url}}</a>
+                        </td>
+                        <td>
+                            <span>{{photo.DisplayOrder}}</span>
+                        </td>
+                        <td class="center">
+                            <span class="deletePhoto cursor-pointer glyphicon glyphicon-remove cursor-pointer" style="color: red;" ng-click="deletePhoto(photo.ImageName)"></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</form>

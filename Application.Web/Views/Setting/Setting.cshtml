@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+
+<div ng-controller="SettingCtrl" ng-cloak>
+    <div>
+        <div class="row">
+            <div class="col-md-12">
+                <h1>
+                    Settings
+                </h1>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12 mobile-view-overflow">
+                <table class="table table-bordered table-condensed table-hover setup-form">
+                    <tr class="setup-table-header">
+                        <th style="width: 200px; text-align: left;">
+                            <div class="btn-toolbar">
+                                <button type="submit" class="btn btn-sm btn-primary" ng-click="toggleAddMode()"><span class="glyphicon glyphicon-plus"></span> Add</button>
+                            </div>
+                        </th>
+                        <th>Name</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr ng-show="addMode">
+                        <td>
+                            <div class="btn-toolbar">
+                                <div class="setup-btn-group">
+                                    <button type="submit" class="btn btn-sm btn-primary" ng-click="createSetting()"><span class="glyphicon glyphicon-ok"></span> Save</button>
+                                    <button type="submit" class="btn btn-sm btn-default" ng-click="toggleAddMode()"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="width: 300px;">
+                            <select ng-model="SettingName" name="SettingName" class="form-control form-group-margin" ng-options="settingName as settingName for settingName in settingNameList" required>
+                                <option value="">---Select Setting Name---</option>
+                            </select>
+                        </td>
+                        <td>
+                            @*<input ng-model="SettingValue" class="setup-form-input" style="width: 100%;" />*@
+                            <textarea ng-model="SettingValue" rows="3" class="setup-form-input" style="width: 100%;"></textarea>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="setting in settingList | orderBy:'Name'">
+                        <td>
+                            <div class="btn-toolbar" ng-show="setting.editMode == null || setting.editMode == false">
+                                <div class="setup-btn-group">
+                                    <button type="submit" class="btn btn-sm btn-success" ng-click="toggleEditMode(setting)"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+                                    <button type="submit" class="btn btn-sm btn-danger" ng-click="deleteSetting(setting)" style="margin-left:5px;"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                                </div>
+                            </div>
+                            <div class="btn-toolbar" ng-show="setting.editMode == true">
+                                <div class="setup-btn-group">
+                                    <button type="submit" class="btn btn-sm btn-primary" ng-click="updateSetting(setting)"><span class="glyphicon glyphicon-ok"></span> Update</button>
+                                    <button type="submit" class="btn btn-sm btn-default" ng-click="toggleEditMode(setting)" style="margin-left:5px;"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="width: 300px;">
+                            <span ng-show="setting.editMode == null || setting.editMode == false">{{setting.Name}}</span>
+                            <select ng-model="setting.Name" name="SettingName" ng-show="setting.editMode == true" class="form-control form-group-margin" ng-options="settingName as settingName for settingName in settingNameList" required>
+                                <option value="">---Select Setting Name---</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span ng-show="setting.editMode == null || setting.editMode == false">{{setting.Value}}</span>
+                            @*<input ng-model="setting.Value" ng-show="setting.editMode == true" class="setup-form-input" style="width: 100%;" />*@
+                            <textarea ng-model="setting.Value" rows="3" ng-show="setting.editMode == true" class="setup-form-input" style="width: 100%;"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

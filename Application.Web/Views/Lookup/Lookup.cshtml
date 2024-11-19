@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Lookups";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+<div class="page-banner no-subtitle">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 id="lookupName" style="text-transform:capitalize !important;"></h2>
+        </div>
+        <div class="col-md-6">
+            <ul class="breadcrumbs">
+                <li><span><b>Admin</b></span></li>
+                <li>Item Type</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div ng-controller="LookupCtrl" ng-cloak>
+    <div style="width: 100%;">
+        <table class="table table-bordered table-condensed table-hover setup-form">
+            <tr class="setup-table-header">
+                <th style="text-align:left; width:200px;">
+                    <div class="btn-toolbar">
+                        <button type="submit" class="btn btn-sm btn-primary" ng-click="toggleAddMode()"><span class="glyphicon glyphicon-plus"></span> Add</button>
+                    </div>
+                </th>
+                <th>Value</th>
+            </tr>
+            <tr ng-show="addMode">
+                <td>
+                    <div class="btn-toolbar" style="width:200px;">
+                        <div class="setup-btn-group">
+                            <button type="submit" class="btn btn-sm btn-primary" ng-click="createLookup()"><span class="glyphicon glyphicon-ok"></span> Save</button>
+                            <button type="submit" style="margin-left:10px;" class="btn btn-sm btn-default" ng-click="toggleAddMode()"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <input ng-model="lookup.Value" />
+                </td>
+            </tr>
+            <tr ng-repeat="lookup in lookupList">
+                <td>
+                    <div class="btn-toolbar" ng-show="lookup.editMode == null || lookup.editMode == false" style="width:250px;">
+                        <div class="setup-btn-group">
+                            <button type="submit" class="btn btn-sm btn-success" ng-click="toggleEditMode(lookup)"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+                            <button type="submit" style="margin-left:10px;" class="btn btn-sm btn-danger" ng-click="deleteLookup(lookup)"><span class="glyphicon glyphicon-remove"></span> Delete</button>                            
+                        </div>
+                    </div>
+                    <div class="btn-toolbar" ng-show="lookup.editMode == true" style="width:200px;">
+                        <div class="setup-btn-group">
+                            <button type="submit" class="btn btn-sm btn-primary" ng-click="updateLookup(lookup)"><span class="glyphicon glyphicon-ok"></span> Update</button>
+                            <button type="submit" style="margin-left:10px;" class="btn btn-sm btn-default" ng-click="toggleEditMode(lookup)"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <span ng-show="lookup.editMode == null || lookup.editMode == false">{{lookup.Value}}</span>
+                    <input ng-model="lookup.Value" ng-show="lookup.editMode == true" style="width: 200px;" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

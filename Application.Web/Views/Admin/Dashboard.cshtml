@@ -1,0 +1,288 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+
+<div ng-controller="AdminDashboardCtrl">
+
+    <h2 style="padding-left:10px;">Dashboard</h2>
+    <br />
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="dashboard-container">
+                <div class="dashboard-section-title clearfix">
+                    <h3 style="padding-left:10px; font-weight: 400; font-size:17px; float:left;">Online Orders</h3>
+                    <a href="/Order/OrderList?orderStatus=Processing" style="float:right; padding-right:14px;">View All</a>
+                </div>
+                <div class="dashboard-section-container">
+                    <div class="item-loading">
+                        <img src="~/Images/ajax-loader.gif" /> Loading...
+                    </div>
+                    <div>
+                        <table id="admin-dashboard-orderlist" class="table table-striped table-bordered table-hover" style="width: 100%;"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="dashboard-container">
+                <div class="dashboard-section-title">
+                    <h3 style="padding-left:10px; font-weight: 400; font-size:17px;">Today's Sells</h3>
+                </div>
+                <div class="dashboard-section-container">
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-4">
+                            <div class="infobox infobox-green" style="background-color: #E35B5B; color: #fff">
+                                <div class="infobox-icon">
+                                    <i class="icon icon-globe-2" style="font-size: 50px;"></i>
+                                </div>
+                                <div class="infobox-data" style="float:right;">
+                                    <div id="onlineSellCount" class="infobox-data-number" style="text-align: right; height: 20px;"></div>
+                                    <div class="infobox-lebel" style="text-align:right; padding-top:10px;">Online Sells</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="infobox infobox-green" style="background-color: #E35B5B; color: #fff">
+                                <div class="infobox-icon">
+                                    <i class="icon icon-globe-2" style="font-size: 50px;"></i>
+                                </div>
+                                <div class="infobox-data" style="float:right;">
+                                    <div id="onlineSellCount" class="infobox-data-number" style="text-align: right; height: 20px;"></div>
+                                    <div class="infobox-lebel" style="text-align:right; padding-top:10px;">Store Sells</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="infobox infobox-green" style="background-color: #8775A7; color: #fff">
+                                <div class="infobox-icon">
+                                    <i class="icon icon-list-1" style="font-size: 60px;"></i>
+                                </div>
+                                <div class="infobox-data" style="float:right;">
+                                    <div id="pendingOrderCount" class="infobox-data-number" style="text-align: right; height: 20px;"></div>
+                                    <div class="infobox-lebel" style="text-align:right; padding-top:10px;">Wholesale Sells</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="dashboard-container">
+                <div class="dashboard-section-title">
+                    <h3 style="padding-left:10px; font-weight: 400; font-size:17px;">Total Items</h3>
+                </div>
+                <div class="dashboard-section-container">
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-4">
+                            <div class="infobox infobox-green" style="background-color: #8775A7; color: #fff">
+                                <div class="infobox-icon">
+                                    <i class="icon icon-list-1" style="font-size: 60px;"></i>
+                                </div>
+                                <div class="infobox-data" style="float:right;">
+                                    <div id="pendingOrderCount" class="infobox-data-number" style="text-align: right; height: 20px;"></div>
+                                    <div class="infobox-lebel" style="text-align:right; padding-top:10px;">Delivery Pending</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="infobox infobox-green" style="background-color: #2196F3; color: #fff">
+                                <div class="infobox-icon">
+                                    <i class="icon icon-list-bullet" style="font-size: 50px;"></i>
+                                </div>
+                                <div class="infobox-data" style="float:right;">
+                                    <div id="totalItemPosted" class="infobox-data-number" style="text-align: right; height: 20px;"></div>
+                                    <div class="infobox-lebel" style="text-align:right; padding-top:10px;">Total Item Posted</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="infobox infobox-green" style="background-color: yellowgreen; color: #fff">
+                                <div class="infobox-icon">
+                                    <i class="icon icon-dollar" style="font-size: 50px;"></i>
+                                </div>
+                                <div class="infobox-data" style="float:right;">
+                                    <div id="totalItemValue" class="infobox-data-number" style="text-align: right; height: 20px;"></div>
+                                    <div class="infobox-lebel" style="text-align:right; padding-top:10px;">Total Item Cost Values</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <div class="row">
+        @*<div class="col-md-12">
+                <div class="dashboard-container">
+                    <div class="dashboard-section-title">
+                        <h3 style="padding-left:10px; font-weight: 400; font-size:17px;">Todays Sell</h3>
+                    </div>
+                    <div class="dashboard-section-container">
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-sm-6">
+                                <div class="infobox infobox-green" style="background-color: #219642; color: #fff">
+                                    <div class="infobox-icon">
+                                        <i class="icon icon-list-bullet" style="font-size: 50px;"></i>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="infobox-data" style="float:right; padding-top: 13px;">
+                                                <div id="deliveryOrdersCount" class="infobox-data-number" style="text-align: right; height: 20px; font-size: 30px !important; font-weight: 600;"></div>
+                                                <div class="infobox-lebel" style="text-align:right; padding-top:10px;">Delivery Orders</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="infobox-data" style="float:right; padding-top: 13px;">
+                                                <div id="deliveryOrdersSell" class="infobox-data-number" style="text-align: right; height: 20px; font-size: 30px !important; font-weight: 600;"></div>
+                                                <div class="infobox-lebel" style="text-align:right; padding-top:10px;">Delivery Sells</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="infobox infobox-green" style="background-color: #2198BD; color: #fff">
+                                    <div class="infobox-icon">
+                                        <i class="icon icon-dollar" style="font-size: 50px;"></i>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="infobox-data" style="float:right; padding-top: 13px;">
+                                                <div id="pickupOrdersCount" class="infobox-data-number" style="text-align: right; height: 20px; font-size: 30px !important; font-weight: 600;"></div>
+                                                <div class="infobox-lebel" style="text-align:right; padding-top:10px;">Pickup Orders</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="infobox-data" style="float:right; padding-top: 13px;">
+                                                <div id="pickupOrdersSell" class="infobox-data-number" style="text-align: right; height: 20px; font-size: 30px !important; font-weight: 600;"></div>
+                                                <div class="infobox-lebel" style="text-align:right; padding-top:10px;">Pickup Sells</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        <div class="col-md-12">
+            <div class="dashboard-container">
+                <div class="dashboard-section-title">
+                    <h3 style="padding-left:10px; font-weight: 400; font-size:17px;">Received Amount</h3>
+                </div>
+                <div class="dashboard-section-container">
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-4">
+                            <div class="infobox infobox-green" style="background-color: #8775A7; color: #fff">
+                                <div class="infobox-icon">
+                                    <i class="icon icon-dollar" style="font-size: 60px;"></i>
+                                </div>
+                                <div class="infobox-data" style="float:right;">
+                                    <div id="dashboardTotalAmount" class="infobox-data-number" style="text-align: right; height: 20px;"></div>
+                                    <div class="infobox-lebel" style="text-align:right; padding-top:10px;">Total Amount</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="infobox infobox-green" style="background-color: #2196F3; color: #fff">
+                                <div class="infobox-icon">
+                                    <i class="icon icon-dollar" style="font-size: 50px;"></i>
+                                </div>
+                                <div class="infobox-data" style="float:right;">
+                                    <div id="dashboardTotalCash" class="infobox-data-number" style="text-align: right; height: 20px;"></div>
+                                    <div class="infobox-lebel" style="text-align:right; padding-top:10px;">Total Cash</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="infobox infobox-green" style="background-color: yellowgreen; color: #fff">
+                                <div class="infobox-icon">
+                                    <i class="icon icon-dollar" style="font-size: 50px;"></i>
+                                </div>
+                                <div class="infobox-data" style="float:right;">
+                                    <div id="dashboardTotalEftos" class="infobox-data-number" style="text-align: right; height: 20px;"></div>
+                                    <div class="infobox-lebel" style="text-align:right; padding-top:10px;">Total Eftpos</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <br />
+    @*<div class="row">
+        <div class="col-sm-12">
+            <div class="dashboard-container">
+                <div class="dashboard-section-title clearfix">
+                    <h3 style="padding-left:10px; font-weight: 400; font-size:17px; float:left;">Feedbacks received from customers</h3>
+                </div>
+                <div class="dashboard-section-container" style="overflow:auto;">
+                    <table id="feedback-table" class="table table-striped table-bordered table-hover dataTable no-footer">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Feedback</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="feedbackBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+
+</div>
+
+<div class="modal fade" id="branchModal" tabindex="-1" role="dialog" aria-labelledby="branchModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document" style="width: 60%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="branchModalLabel">Branches</h5>
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>*@
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Select Branch</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="branches">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="add-to-cart" class="btn btn-primary">Add to Cart</button>
+                </div>*@
+        </div>
+    </div>
+</div>

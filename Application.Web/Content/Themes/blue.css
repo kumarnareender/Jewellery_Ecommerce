@@ -1,0 +1,44 @@
+﻿.top-cat-menu-header {
+    background-color: #0D73A7 !important;
+}
+.h-p-price {
+    color: #0d73c7 !important;    
+}
+.top-header {
+    background-color: #0d73c7 !important;
+}
+#header-search-box {
+    border: 2px solid #0d73c7 !important;
+}
+#header-search-btn {
+    border: 2px solid #0d73c7 !important;
+    background-color: #0d73c7 !important;
+}
+.btn-filter-price {
+    background-color: #0d73c7 !important;
+}
+.slider .slick-prev:before {
+    color: #0d73c7 !important;
+}
+.slider .slick-next:before {
+    color: #0d73c7 !important;
+}
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+    background-color: #0d73c7 !important;
+}
+.theme-text-color {
+    color: #0d73c7 !important;
+}
+.theme-back-color {
+    background-color: #0d73c7 !important;
+}
+.btn-load-more {
+    color: #0d73c7 !important;
+    border: 1px solid #0d73c7 !important;
+}
+.tabs li.active {    
+    border-top: 2px solid #0d73c7 !important;
+}
+.tabs li.active a {
+    color: #0d73c7 !important;
+}

@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+
+<div class="page-banner no-subtitle">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Purchase Product List</h2>
+        </div>
+        <div class="col-md-6">
+            <ul class="breadcrumbs">
+                <li><a href="#">Add Product</a></li>
+                <li>Add Products to cart</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<form name="myForm" novalidate>
+    <div ng-controller="AdminAddPurchaseOrderCtrl" class="form-horizontal">
+
+        <div class="row">
+            <div class="col-sm-12 mobile-view-overflow">
+
+                <div id="tbl-wrap" style="background-color: #f2f2f2; position: absolute; opacity:0.5;"></div>
+
+                <table class="tbl-filter">
+                    <tr>
+                        <td>Branch</td>
+                        <td>Category</td>
+                        <td>Supplier</td>
+                        <td>Item Type</td>
+                        <td>Low Stock</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select class="form-control" name="branchList" id="branchList">
+                                <option value="">All Branches</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="form-control" name="categoryList" id="categoryList">
+                                <option value="">All Categories</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="form-control" name="supplierList" id="supplierList">
+                                <option value="">All Suppliers</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="form-control" name="itemTypeList" id="itemTypeList">
+                                <option value="">All Item Types</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="form-control" name="lowStock" id="lowStock">
+                                <option value="">All</option>
+                                <option value="LowStock">Low Stocks</option>
+                            </select>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top:5px;">
+            <div class="col-md-12">
+                <div style="float:right;">
+                    <span>Total low stock items = </span><span style="color:red; font-weight: 600; font-size:20px; position:relative; top:3px;" id="lowStockItemCount"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top:20px;">
+            <div class="col-sm-12">
+                <div style="margin-bottom:30px;">
+                    <div style="border: 1px solid #dcdcdc; border-right:0; height: 34px; float:left;"><img id="showScan" ng-click="showHideBarcodeScanner()" src="~/Images/scan.png" style=" height: 40px; cursor: pointer; position: relative; top: -4px;" /></div>  <input id="txt-search" style="width: 200px; float:left; margin-right:5px;" type="text" class="form-control" placeholder="Search Item" /> <button class="btn btn-success" id="btn-search-item">Search</button>
+                </div>
+                <div id="barcode-reader-container" class="row form-group" style="display:none;">
+                    <div class="col-ms-8">
+                        <div id="barcode-reader" style="margin: 15px; width:500px;"></div>
+                    </div>
+                </div>
+                <div class="item-loading">
+                    <img src="~/Images/ajax-loader.gif" /> Loading...
+                </div>
+                <div>
+                    <div>
+                        <span id="totalRecordFound" style="font-size: 15px; font-style: italic;"></span>
+                    </div>
+
+                    <table id="dt-purchaseOrder-Products" class="table table-striped table-bordered table-hover" style="width: 100%;"></table>
+
+                    <!--Pagination-->
+                    <div class="pagination-container" style="display:none; text-align:center; border: 1px solid #dcdcdc; background-color: #fff; margin-top: 10px;">
+                        <ul id="pagination-ul" class="pagination-md"></ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Site Logo";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+
+<style type="text/css">
+    table {
+        border-collapse: collapse;
+    }
+
+    td {
+        padding: 6px;
+    }
+
+    .fileUpload {
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+    }
+
+    .fileUpload input.upload {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+
+    .photo-additional {
+        color: blue;
+        font-weight: 600;
+    }
+
+    .photo-primary {
+        font-weight: 600;
+        color: green;
+    }
+</style>
+
+<div class="page-banner no-subtitle">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Site Logo</h2>
+        </div>
+        <div class="col-md-6">
+            <ul class="breadcrumbs">
+                <li><a href="#">Administration</a></li>
+                <li>Site Logo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<form name="myForm" novalidate>
+    <div ng-controller="siteLogoCtrl" class="form-horizontal">
+
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div style="background-color: #ecf9fa; border: 1px solid #b2e6e9; text-align: center;" class="mobile-view-overflow">
+
+                    <table style="margin: 0 auto;">
+                        <tr>
+                            <td style="padding-right: 30px;">
+                                <table>
+                                    <tr>
+                                        <td class="center">
+                                            <div class="fileUpload btn btn-primary center">
+                                                <span>Browse Image</span>
+                                                <input id="inputFile" type="file" class="upload" name="file" accept="image/*" onchange="angular.element(this).scope().selectPhoto(this.files)" required />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center">
+                                            <b>Note:</b> Height: 60px, File Format: .png, Size: max 1mb
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="border-left: 1px solid #dcdcdc;"></td>
+                            <td style="padding-left: 30px;">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <div style="width: 150px; height: 50px; border:2px dashed #808080; padding:5px;">
+                                                <img id="imgTemp" style="height: 100%; width: 100%;" src="~/Images/Logo/Logo.png" alt="your image" />
+                                            </div>
+                                            <div id="divSavePhoto" class="center" style="padding:5px; border:1px solid #dcdcdc; margin-top: 2px; display: none;">
+                                                <button id="btnUploadPhoto" type="submit" ng-click="uploadPhoto()" class="btn btn-primary">Save</button>
+                                                <button id="btnPhotoCancel" type="submit" class="btn btn-default">Cancel</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+
+        <br /><br />
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                
+            </div>
+        </div>
+
+    </div>
+</form>

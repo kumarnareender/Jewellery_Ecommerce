@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Change Username";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+
+<div class="page-banner no-subtitle">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Change Username</h2>
+        </div>
+        <div class="col-md-6">
+            <ul class="breadcrumbs">
+                <li><a href="#">My Auction</a></li>
+                <li>Change Username</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-controller="ChangeUsernameCtrl">
+    <div class="col-sm-12">
+
+        <div class="form-group">
+            <div class="row">
+                <div class="message"></div>
+            </div>
+        </div>
+
+
+        <div id="divChangeUsername">
+
+            @{
+                if (Application.Common.Utils.GetLoggedInUser() != null)
+                {
+                    var user = Application.Common.Utils.GetLoggedInUser();
+                    var username = user.Username;
+
+            <div class="form-group">
+                <div class="row">
+                    <span class="col-sm-5 right">Mobile Number (Your username):</span>
+                    <div class="col-sm-7">
+                        <input type="text" id="username" class="form-control" ng-keydown="numberOnly($event)" style="width:220px; height: 30px;" value="@{ @username }" />
+                    </div>
+                </div>
+            </div>
+                }
+            }
+            <div class="form-group">
+                <div class="row">
+                    <h3 class="col-sm-5"></h3>
+                    <div class="col-sm-7">
+                        <button id="btnChangeUsername" type="submit" class="btn btn-primary">Change Username</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div id="divVerifyMobile" style="display:none;">
+            <div class="container11">
+                <div id="divVerifyEmail" class="row" style="background-color: #fff; margin-left:0; margin-right:0; padding-top: 20px;">
+                    <div class="col-sm-12">
+                        <div class="center">
+                            <div style="font-size: 15px; padding-top:15px; padding-bottom: 15px;">
+                                <div>An account verification code has been send to your mobile number</div>
+                                <div style="padding-top:2px;">Please enter the code below and verify your account!</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 25px; text-align:center;">
+                        <label class="control-label">Token<span class="mandatory-field">*</span></label>
+                        <input id="txtToken" type="text" name="Token" style="width: 150px; height:35px;" ng-model="Token">
+                    </div>
+                    <div class="form-group">
+                        <div style="padding-top: 5px; text-align: center; position: relative; left: 25px;">
+                            <button id="btnVerifyToken" ng-disabled="form.$invalid" type="submit" ng-click="VerifyToken()" class="btn btn-primary" style="font-weight: 600; padding: 10px; padding-left: 30px; padding-right: 30px;">Verify</button>
+                            &nbsp;<span class="verify-account-loading" style="display:none;">&nbsp;<img src="~/Images/ajax_loader_blue_32.gif" />&nbsp;<label class="loading-text">Verifying your account...</label></span>
+                        </div>
+                    </div>
+                    <div class="center" style="margin-bottom: 30px; padding-left: 10px; font-size:15px; padding-top:15px;">
+                        <span>Not received any verification code? Please</span> <b><a ng-click="resendToken()" href="#"> click here </a></b><span> to send the code again.</span>
+                        <br /><span class="resend-token-loading" style="display:none;">&nbsp;<img src="~/Images/ajax_loader_blue_32.gif" />&nbsp;<label class="loading-text">Verifying Token...</label></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

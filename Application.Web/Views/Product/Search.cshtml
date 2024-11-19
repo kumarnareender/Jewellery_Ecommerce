@@ -1,0 +1,417 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .search-result {
+        background-color: #fff;
+        border:1px solid #eee;  
+        border-bottom: 1px solid #ebebeb;
+        padding: 10px;
+        padding-bottom: 15px;
+        display: none;
+    }
+    .search-result h3{
+        color: gray !important;
+    }
+    .refine-search-container {
+        border: 1px solid #dcdcdc;
+        background-color: #fff;
+    }
+
+    .filter-container{
+        margin-bottom:20px;
+    }
+    .filter-header {
+        padding: 8px;
+        background-color: #ebebeb;
+        font-weight: 600;
+        border-bottom: 1px solid #dcdcdc;
+    }
+    .filter-header span {
+        font-size: 15px;
+        color: #444;
+    }
+    .filter-content{
+        padding: 4px;
+        padding-top: 12px;
+        padding-left: 10px;
+    }
+    .checkbox-label {
+        position: relative;
+        top: -2px;
+        padding-left: 3px;
+    }
+    .search-loading h1{
+        color: red;
+    }
+    .search-criteria {
+        overflow: hidden;
+        font-style: italic;
+        font-size: 15px;
+    }
+    .pagination-container {
+        text-align: center;
+        border: 1px solid #dcdcdc;
+        background-color: whitesmoke;
+        margin-top: 20px;
+        display: none;
+    }
+    .pagination-container>.pagination {
+        margin: 10px !important;
+    }
+    .no-record-found {
+        display: none;
+        text-align: center;
+        padding: 20px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        font-weight: 600;
+        font-size: 18px;
+        color: #444;
+        background-color: #fff;
+        border: 1px solid #dcdcdc;
+    }
+    .login-error {
+        color: red;
+        text-align: center;
+    }
+    .logging {
+        padding-left: 10px;
+        color: green;
+        display: none;
+    }
+    .searchlist-action-title {
+        padding: 12px;
+        border-bottom: 1px solid #dcdcdc;
+        text-align:left;
+    }
+    .searchpage-action-loader {
+        padding-top: 20px;
+    }
+    .express-interest-loader, .msg-sending-loader{
+        color:green;
+        font-size:14px;
+        font-weight:600;
+    }
+    .upgrade-plan{
+        display:none;
+    }
+    .action-message{
+        font-weight: 600;
+    }
+    .product-thumb{
+        width:140px;
+        float:left;
+        margin-right:20px;
+        position:relative;
+    }
+    .product-details{
+        min-height:100px;
+    }
+    .listing-title {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        height: auto;
+        -webkit-line-clamp: 1;
+        font-size: 17px;
+        color: #0084ba;
+        margin-bottom: 0;
+        margin-right: 35px;
+    }
+    .listing-location {
+        margin-right: 0;        
+        margin-bottom: 10px;
+        color: #444;
+        font-size: 13px;
+    }
+    .truncate-paragraph {
+        max-height: 41px;
+        overflow: hidden;
+        position: relative;
+        display: block;
+    }
+    .listing-description {
+        margin-bottom: 8px !important;
+        color: #8a848d;
+        line-height: 20px !important;
+        margin-top:20px;
+        font-size: 14px !important;
+    }
+    .truncate-paragraph:after {
+        content: "\02026";
+        bottom: 0;
+        right: 0;
+        width: 50px;        
+    }
+    .listing-posted-date {        
+        line-height: 21px;
+        padding-bottom: 8px;
+        vertical-align: bottom;
+        color: #444;
+        margin-left: 160px;
+    }
+    .listing-product-info:hover {
+        background-color: #F1F5FC !important;
+    }
+    .listing-price {
+        color: green;
+        font-size: 16px;
+
+    }
+    .filter-price-input {
+        width: 55px;
+        padding: 5px;
+        border: 1px solid #dcdcdc;
+    }
+    .filter-loc-selected > a, .filter-cat-selected > a {
+        color: #444 !important;
+    }
+    .icon-minus-3, .icon-plus-3 {
+        cursor: pointer;
+    }
+    .product-img-count {
+        padding: 1px;
+        padding-left: 5px;
+        padding-right: 5px;
+        background: rgba(0,0,0,.5);
+        color: #fff;
+        float: left;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+    .product-img-count span:before{
+        margin-right: 4px;
+    }
+
+    .product-img-pos {
+        position: absolute;
+        width: auto;
+        height: auto;
+        top: 50%;
+        left: 50%;
+        max-height: 100%;
+        max-width: 100%;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+        -o-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    .masonry {
+        margin: 0 auto;
+    }
+
+    .tabs {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden;       
+        margin-bottom: 15px;
+    }
+
+    .tabs li {
+        float: left;
+        border: 1px solid #ccc;            
+    }
+
+    .tabs li a {
+        display: block;
+        padding: 5px 10px;
+        font-size: 13px;
+        color: #0654ba;
+        text-decoration: none;
+    }
+
+    .tabs li.active {
+        background: #fff;
+        border-top: 2px solid #ff6a00;
+    }
+
+    .tabs li.active a {
+        color: #ff6a00;
+        font-weight: 600;
+    }
+
+    .tab_container {
+        border: 1px solid #dae2ee;
+        border-top: none;
+        background: #fff;
+    }
+
+    .tab_content {
+        padding: 20px;
+        font-size: 14px;
+    }
+
+    .tab-2,.tab-3 {
+        border-left: 0 !important;
+    }
+
+    .tabs .current{
+        background-color: #eee;
+    }
+
+    #search-item-container .grid-item {
+        width: 25%;        
+    }    
+    .grid-item{
+        padding: 7px !important;        
+    }
+    
+</style>
+
+<form name="myForm" novalidate>
+    <div ng-controller="ProductSearchCtrl" id="searchCtl" class="form-horizontal">
+
+        <div class="container" style="margin-top:8px;">            
+            <div class="row">
+                <div class="col-sm-3 app-hide-NONE" style="margin-bottom: 20px;">
+
+                    <div class="refine-search-container">
+
+                        <div class="filter-container">
+                            <div class="filter-header">
+                                <span>Category</span>
+                                <span ng-click="expandCollapse('category')" style="float:right;"><i class="category-icon-showhide icon-minus-3"></i></span>
+                            </div>
+                            <div class="filter-content category-filter">
+                                <ul id="category-filter-selection"></ul>
+                                <ul id="category-filter" style="margin-top:4px; margin-left:0px;"></ul>
+                                <div class="category-loader">
+                                    <img src="~/Images/ajax-loader-small.gif" /><span style="padding-left:8px;">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-container">
+                            <div class="filter-header">
+                                <span>Price</span>
+                                <span ng-click="expandCollapse('price')" style="float:right;"><i class="price-icon-showhide icon-minus-3"></i></span>
+                            </div>
+                            <div class="filter-content price-filter">
+                                <input id="flt-min-price" ng-model="MinPrice" class="filter-price-input" placeholder="Min" />
+                                &nbsp;To&nbsp;
+                                <input id="flt-min-price" ng-model="MaxPrice" class="filter-price-input" placeholder="Max" />
+                                &nbsp;
+                                <div class="btn-filter-price" style="">
+                                    <a href="#" ng-click="priceFilter()" style="color: #fff; font-size: 15px;">Go</a>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+
+                </div>
+                <div class="col-sm-9 show-result clearfix">
+
+                    <div id="searchResultTitle"></div>
+                    <div class="clearfix">
+                        <div>
+                            <div id="search-item-container" class="grid_featuredItems"></div>
+                        </div>
+                    </div>
+                    <br />
+                    
+                    <div class="search-loading" style="display:none;">
+                        <div class="listing-product-info" style="margin-top: 0px; height: 100%; padding: 12px; padding-bottom: 18px; background-color: #fff; border-bottom: 1px solid #f1f0f1;">
+                            <div>
+                                <div class="product-thumb" style="width: 140px; height: 105px;">
+                                    <div class="dum-prod-item" style="width: 100%; height: 100%;"></div>
+                                </div>
+                                <div class="product-details">
+                                    <div class="dum-load-1 dum-prod-item" style="margin-left: 160px; width: inherit; height:12px;"></div>
+                                    <div class="dum-load-2 dum-prod-item" style="margin-left: 160px; width: 120px; height: 12px;"></div>
+                                    <div class="dum-load-2 dum-prod-item" style="margin-left: 160px; width: 250px; height: 12px; margin-top: 30px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="listing-product-info" style="margin-top: 0px; height: 100%; padding: 12px; padding-bottom: 18px; background-color: #fff; border-bottom: 1px solid #f1f0f1;">
+                            <div>
+                                <div class="product-thumb" style="width: 140px; height: 105px;">
+                                    <div class="dum-prod-item" style="width: 100%; height: 100%;"></div>
+                                </div>
+                                <div class="product-details">
+                                    <div class="dum-load-1 dum-prod-item" style="margin-left: 160px; width: inherit; height:12px;"></div>
+                                    <div class="dum-load-2 dum-prod-item" style="margin-left: 160px; width: 120px; height: 12px;"></div>
+                                    <div class="dum-load-2 dum-prod-item" style="margin-left: 160px; width: 250px; height: 12px; margin-top: 30px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="listing-product-info" style="margin-top: 0px; height: 100%; padding: 12px; padding-bottom: 18px; background-color: #fff; border-bottom: 1px solid #f1f0f1;">
+                            <div>
+                                <div class="product-thumb" style="width: 140px; height: 105px;">
+                                    <div class="dum-prod-item" style="width: 100%; height: 100%;"></div>
+                                </div>
+                                <div class="product-details">
+                                    <div class="dum-load-1 dum-prod-item" style="margin-left: 160px; width: inherit; height:12px;"></div>
+                                    <div class="dum-load-2 dum-prod-item" style="margin-left: 160px; width: 120px; height: 12px;"></div>
+                                    <div class="dum-load-2 dum-prod-item" style="margin-left: 160px; width: 250px; height: 12px; margin-top: 30px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="listing-product-info" style="margin-top: 0px; height: 100%; padding: 12px; padding-bottom: 18px; background-color: #fff; border-bottom: 1px solid #f1f0f1;">
+                            <div>
+                                <div class="product-thumb" style="width: 140px; height: 105px;">
+                                    <div class="dum-prod-item" style="width: 100%; height: 100%;"></div>
+                                </div>
+                                <div class="product-details">
+                                    <div class="dum-load-1 dum-prod-item" style="margin-left: 160px; width: inherit; height:12px;"></div>
+                                    <div class="dum-load-2 dum-prod-item" style="margin-left: 160px; width: 120px; height: 12px;"></div>
+                                    <div class="dum-load-2 dum-prod-item" style="margin-left: 160px; width: 250px; height: 12px; margin-top: 30px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="listing-product-info product-search-result" style="display:none; margin-top: 0px; height: 185px; padding: 12px; background-color: #fff; border-left:1px solid #eee; border-right:1px solid #eee; border-bottom: 1px solid #ddd;" ng-repeat="product in searchResult">
+                        <div>
+                            <a href="/Product/Details?id={{product.Id}}">
+                                <div class="product-thumb" style="width: 160px; height: 160px; border:1px solid #eee; text-align: center;">
+                                    <img alt="" ng-src="{{product.PrimaryImageName}}" style="max-width:158px; max-height:158px;" class="product-img-pos" />
+                                    <div class="product-img-count"><span class="icon-camera-1">{{product.ImageList.length}}</span></div>
+                                </div>
+                                <div class="product-details">
+                                    <div>
+                                        <span class="listing-title11" style="font-size: 17px; color: #0654ba;">{{product.Title}}</span>
+                                    </div>
+                                    <p class="listing-description txt-sub txt-tertiary truncate-paragraph hide-fully-to-m" style="margin-bottom: 8px !important;" itemprop="description">
+                                        {{product.Description}}
+                                    </p>
+                                    
+                                <div style="padding-top:8px;" ng-show="product.IsAuction == true">
+                                    <span style="font-weight:600; font-size:16px; color:#444;">{{product.LastBidAmount}}</span>
+                                    <img src="/Images/bid.png" style="height: 18px;position: relative;top: -5px;" />
+                                    &nbsp;|&nbsp;<span style="font-weight:600;">{{product.TotalBid}}</span>
+                                    &nbsp;|&nbsp;<span style="color:#444;">Bid Ends: <b style="color:red;">{{product.AuctionTimeRemaining}}</b></span>
+                                </div>
+                                    <div style="padding-top:8px;" ng-hide="product.IsAuction == true">
+                                        <span style="font-weight:600; font-size:16px; color:#444;">{{product.PriceText}}</span>                                        
+                                        &nbsp;-&nbsp;<span>Buy It Now</span>
+                                    </div>
+
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <!--Pagination-->
+                    <div class="pagination-container" style="display:none; text-align:center; border: 1px solid #dcdcdc; background-color: #fff; margin-top: 10px;">
+                        <ul id="pagination-ul" class="pagination-md"></ul>
+                    </div>
+                    
+                    <div class="no-record-found">
+                        <i class="icon-warning" style="color: #ff5a60;"></i>
+                        <span style="font-size: 18px;">Sorry, No record found!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</form>

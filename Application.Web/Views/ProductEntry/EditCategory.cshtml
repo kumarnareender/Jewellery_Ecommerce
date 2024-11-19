@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Edit Category";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+
+<div class="container11">
+    <div class="page-banner no-subtitle">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Edit Category</h2>
+            </div>
+            <div class="col-md-6">
+                <ul class="breadcrumbs">
+                    <li><a href="#">Products</a></li>
+                    <li>Edit Category</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <form name="myForm" novalidate>
+        <div ng-controller="editCategoryCtrl" class="form-horizontal">
+            <div>
+                <div class="section-container" id="category-container">
+                    <div class="s-title">
+                        <span class="product-post-section-text">Product Category</span>
+                    </div>
+                    <div class="s-body">
+
+                        <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-md-12">
+                                <span style="font-weight:600">Current Category:</span>&nbsp;<span id="catName"></span>
+                            </div>
+                        </div>
+
+                        <div class="row category-picker" style="border:1px solid #dcdcdc; margin-left:0; margin-right:0;">
+                            <div class="col-md-3">
+                                <select name="oneSelectEditCategory" tabindex="1" class="column" size="10" id="oneSelectEditCategory"></select>
+                            </div>
+                            <div class="col-md-3">
+                                <select name="twoSelectEditCategory" tabindex="2" class="column" size="10" id="twoSelectEditCategory" style="display: none"></select>
+                            </div>
+                            <div class="col-md-3">
+                                <select name="threeSelectEditCategory" tabindex="3" class="column" size="10" id="threeSelectEditCategory" style="display: none"></select>
+                            </div>
+                            <div class="col-md-3">
+                                <select name="fourSelectEditCategory" tabindex="4" class="column last" size="10" id="fourSelectEditCategory" style="display: none"></select>
+                            </div>
+                        </div>
+                        <div class="row cat-continue-section" style="margin-top: 12px; display:none;">
+                            <div class="col-md-12">
+                                <a id="btnCategoryContinue" class="btn-disable" style="float:right;">Continue</a>
+                            </div>
+                        </div>
+                        <div class="row cat-edit-section" style="display:none;">
+                            <div class="col-md-8">
+                                <span class="selectedCategoryText"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <a id="btnEditCategory" class="btn-active" style="float:right;">Edit</a>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:25px;">
+                            <div class="col-md-12">
+                                <a class="btn btn-default btn-submit" style="color: #fff;" ng-click="updateCategory()">Update Category</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

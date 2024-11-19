@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .login-error {
+        color: red;
+        text-align: center;
+    }
+    .logging {
+        padding-left: 10px;
+        color: green;
+        display: none;
+    }    
+</style>
+
+<div class="login-form" style="margin-top:30px; margin-bottom:30px;">
+    <div class="row" style="margin-left:0; margin-right:0;">
+        <div class="col-sm-12">
+            <div style="padding: 10px; padding-top:0; padding-bottom:0; max-width: 400px; margin: 0px auto;">
+
+                <div class="form-group">
+                    <h3 class="col-sm-12 control-label" style="text-align:center; padding:10px;">Account Login</h3>                    
+                </div>                
+                <div class="form-group">
+                    <div class="row">
+                        <div class="message"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input id="username" placeholder="Email Or Mobile" class="form-control ctl-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input id="password" placeholder="Password" type="password" class="form-control ctl-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-12 control-label">
+                            <span style="float:left;"><input id="rememberMe" type="checkbox" checked="checked"><span style="position: relative; top: -2px; padding-left: 5px;" class="checkbox-label">Remember me</span></span>
+                            <a href="/Security/ForgotPassword" style="float: right;">Forgot password?</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align:center;">
+                            <button style="width: 100%; background-color: #34495e; font-weight:600;margin-bottom: 10px;" id="loginBtn" type="submit" class="login bm-button theme-back-color">LOGIN</button>
+                            <span class="logging">Please Wait. Its logging...</span>
+                        </div>
+                    </div>
+                    <div id="checkoutGuest" class="row" style="border-top: 1px solid #dcdcdc; margin-left: 0; margin-right: 0; display:none;">
+                        <div style="margin-top:10px; margin-bottom:5px; text-align:center;">
+                            <span>Or</span>
+                        </div>                        
+                        <div class="col-sm-12 btn-warning" style="padding-left: 0px; padding-right: 0px; text-align: center;">
+                            <a href="/Account/Register?guest=true" style="width:100%; font-weight:600; font-size:15px;" class="btn btn-warning">Checkout as a Guest</a>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="border-top: 1px solid #dcdcdc; margin-left: 0; margin-right: 0;">
+        <div class="col-sm-12" style="padding-left: 35px; padding-right: 35px; padding-top: 20px; padding-bottom: 30px; text-align: center;">
+            <div style="font-size:13px; padding-bottom:5px;">Don't have the account yet?</div>
+            <button style="width:100%; font-weight:600; background-color: #777;" ng-click="register()" id="register" type="submit" class="bm-button">REGISTER NOW</button>
+        </div>
+    </div>    
+            
+</div>

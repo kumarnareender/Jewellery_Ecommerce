@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Register Account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form name="myForm" novalidate>
+
+    <div ng-controller="RegisterCtrl" style="margin-top:30px; margin-bottom:30px;">
+
+        <div id="divRegister" class="register-form">
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="form-group row-login-credential" style="border-bottom: 1px solid #dcdcdc; padding: 10px; background-color: #f2f2f2; font-size: 15px; font-weight: 600;">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <span>Login Credential</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row-login-credential">
+                        <div class="row">
+                            <span class="col-sm-3 right">Username:</span>
+                            <div class="col-sm-8">
+                                <input type="text" id="username" ng-model="Username" class="form-control" placeholder="Enter Username" style="height: 30px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row-login-credential">
+                        <div class="row">
+                            <span class="col-sm-3 right">Password:</span>
+                            <div class="col-sm-8">
+                                <input type="password" id="password" ng-model="Password" class="form-control" placeholder="Enter Password" style="height: 30px;" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid #dcdcdc; padding: 10px; background-color: #f2f2f2; font-size: 15px; font-weight: 600;">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <span>Shipping Address</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <span class="col-sm-3 right">Name:</span>
+                            <div class="col-sm-8">
+                                <input type="text" id="firstName" ng-model="FirstName" class="form-control" placeholder="Enter Your Name" style="height: 30px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <span class="col-sm-3 right">Mobile No:</span>
+                            <div class="col-sm-8">
+                                <input type="text" id="Mobile" ng-model="Mobile" class="form-control" placeholder="Enter Your mobile number" style="height: 30px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <span class="col-sm-3 right">Email:</span>
+                            <div class="col-sm-8">
+                                <input type="text" id="Email" ng-model="Email" class="form-control" placeholder="Enter Your emai id" style="height: 30px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <span class="col-sm-3 right">City:</span>
+                            <div class="col-sm-4">
+                                @*<input type="text" id="city" ng-model="ShipCity" placeholder="Enter City" class="form-control" style="height: 30px;" />*@
+                                <select id="ShipCity" ng-model="ShipCity" class=" form-control" style="height: 30px; ">
+                                    <option value="0">Select City</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <span class="col-sm-3 right">State:</span>
+                            <div class="col-sm-4">
+                                <input type="text" id="ShipState" ng-model="ShipState" placeholder="Enter State" class="form-control" style="height: 30px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <span class="col-sm-3 right">Postal Code:</span>
+                            <div class="col-sm-4">
+                                <input type="text" id="ShipZipCode" ng-model="ShipZipCode" disabled placeholder="Enter Postal Code" class="form-control" style="height: 30px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <span class="col-sm-3 right">Address:</span>
+                            <div class="col-sm-8">
+                                <textarea id="ShipAddress" ng-model="ShipAddress" placeholder="Enter Address (House number, street, town/village)" class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <h3 class="col-sm-3"></h3>
+                            <div class="col-sm-8">
+                                <button id="btnRegister" type="submit" ng-click="registerAccount()" class="btn btn-primary theme-back-color">Create Account</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Edit Order";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+
+<div class="page-banner no-subtitle">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Edit Purchase Order</h2>
+        </div>
+        <div class="col-md-6">
+            <ul class="breadcrumbs">
+                <li><a href="#">Purchase Orders</a></li>
+                <li>Edit Puchase Order</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<form name="myForm" novalidate>
+    <div ng-controller="PurchaseSalesReturnCtrl" class="form-horizontal">
+        <div class="row">
+            <div class="col-md-12">                
+                <table class="tbl-order-details" style="margin-bottom:15px; float:left;">
+                    <tr>
+                        <td style="font-weight:600;">Order Code:</td>
+                        <td><span id="orderCode"></span></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:600;">Order Mode:</td>
+                        <td><span id="orderMode"></span></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:600;">Order Status:</td>
+                        <td><span id="orderStatus"></span></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:600;">Order Date:</td>
+                        <td><span id="orderDate"></span></td>
+                    </tr>
+                    <tr id="trTotalWeight">
+                        <td style="font-weight:600;">Total Weight:</td>
+                        <td><span id="totalWeight"></span></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:600;">Frozen Items:</td>
+                        <td><span id="frozenItem"></span></td>
+                    </tr>
+                    <tr id="trDeliveryDate">
+                        <td style="font-weight:600;">Delivery Date:</td>
+                        <td><span id="deliveryDate"></span></td>
+                    </tr>
+                </table>
+
+                <div class="print-btn-container" style="float:right;">
+                    <button id="printOrder" class="btn btn-primary">Print Order</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="item-loading">
+                    <img src="~/Images/ajax-loader.gif" /> Loading...
+                </div>
+                <div style="overflow:auto">
+                    <div id="purchase-order-details-item-list"></div>
+                </div>
+                <div style="float:right; margin-top:15px;">
+                    <button id="btnUpdatePurchaseOrder" class="btn btn-primary">Update Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+

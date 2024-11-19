@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Contact Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .contact-us h4{
+        font-size: 15px !important;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12" style="margin-left: 0; margin-right: 0; margin-top: 10px;">
+
+            <div style="background-color: #fff; padding: 10px;border: 1px solid #ccc;">
+
+                <div class="contact-us">
+                    
+                    <div style="max-width: 800px; margin: 0px auto;">
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="message center" style="font-weight: 600; padding: 5px;"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row" style="text-align:center;margin-bottom:40px;">
+                                <h2>Contact Us</h2>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <h4 class="col-sm-4 right">Your Name:</h4>
+                                <div class="col-sm-7">
+                                    <input id="name" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <h4 class="col-sm-4 right">Your Contact Number:</h4>
+                                <div class="col-sm-7">
+                                    <input id="contactNumber" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <h4 class="col-sm-4 right">Message:</h4>
+                                <div class="col-sm-7">
+                                    <textarea id="message" rows="5" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <h3 class="col-sm-4 control-label"></h3>
+                                <div class="col-sm-7">
+                                    <button id="btnSend" type="submit" class="btn btn-primary">Submit</button>
+                                    <span class="status-msg" style="display:none;">Sending Message...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var app = angular.module('app', []);
+</script>

@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Branch";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+<div class="page-banner no-subtitle">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Branch</h2>
+        </div>
+        <div class="col-md-6">
+            <ul class="breadcrumbs">
+                <li><span><b>Admin</b></span></li>
+                <li>Branch</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div ng-controller="BranchCtrl" ng-cloak>
+    <div style="width: 100%;" class="mobile-view-overflow">
+        <table class="table table-bordered table-condensed table-hover setup-form">
+            <tr class="setup-table-header">
+                <th style="text-align:left; width:200px;">
+                    <div class="btn-toolbar">
+                        <button type="submit" class="btn btn-sm btn-primary" ng-click="toggleAddMode()"><span class="glyphicon glyphicon-plus"></span> Add</button>
+                    </div>
+                </th>
+                <th>Name</th>
+                <th class="center" style="width: 200px;">Allow Online Shop</th>
+            </tr>
+            <tr ng-show="addMode">
+                <td>
+                    <div class="btn-toolbar" style="width:200px;">
+                        <div class="setup-btn-group">
+                            <button type="submit" class="btn btn-sm btn-primary" ng-click="createBranch()"><span class="glyphicon glyphicon-ok"></span> Save</button>
+                            <button type="submit" style="margin-left:10px;" class="btn btn-sm btn-default" ng-click="toggleAddMode()"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <input ng-model="branch.Name" style="width: 200px;" />
+                </td>
+                <td class="center">
+                    <input type="checkbox" ng-model="branch.IsAllowOnline" class="setup-form-input" style="width:50px;" />
+                </td>
+            </tr>
+            <tr ng-repeat="branch in branchList | orderBy:'Name':false">
+                <td>
+                    <div class="btn-toolbar" ng-show="branch.editMode == null || branch.editMode == false" style="width:250px;">
+                        <div class="setup-btn-group">
+                            <button type="submit" class="btn btn-sm btn-success" ng-click="toggleEditMode(branch)"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+                            <button type="submit" style="margin-left:10px;" class="btn btn-sm btn-danger" ng-click="deleteBranch(branch)"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                            <button type="submit" style="margin-left:10px; display:none;" class="btn btn-sm btn-warning" ng-click="addAttr(branch)"><span class="glyphicon glyphicon-plus"></span> Attr</button>
+                        </div>
+                    </div>
+                    <div class="btn-toolbar" ng-show="branch.editMode == true" style="width:200px;">
+                        <div class="setup-btn-group">
+                            <button type="submit" class="btn btn-sm btn-primary" ng-click="updateBranch(branch)"><span class="glyphicon glyphicon-ok"></span> Update</button>
+                            <button type="submit" style="margin-left:10px;" class="btn btn-sm btn-default" ng-click="toggleEditMode(branch)"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <span ng-show="branch.editMode == null || branch.editMode == false">{{branch.Name}}</span>
+                    <input ng-model="branch.Name" ng-show="branch.editMode == true" style="width: 200px;" />
+                </td>
+                <td class="center">
+                    <span ng-show="branch.editMode == null || branch.editMode == false">{{branch.IsAllowOnline}}</span>
+                    <input type="checkbox" ng-model="branch.IsAllowOnline" ng-show="branch.editMode == true" class="setup-form-input" style="width:50px;" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

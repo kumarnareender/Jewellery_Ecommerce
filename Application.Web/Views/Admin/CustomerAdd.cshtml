@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewBag.Title = "Add Customer";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+
+<div class="container11">
+
+    <div class="page-banner no-subtitle">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 id="lblAddCustomer">Add Customer</h2>
+            </div>
+            <div class="col-md-6">
+                <ul class="breadcrumbs">
+                    <li><a href="#">Add Customer</a></li>
+                    <li>Admin</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <form name="myForm" novalidate>
+        <div ng-controller="AddCustomerCtrl" class="form-horizontal" style="padding-top:5px;">
+            <div class="register-form">
+
+                <div class="row" style="margin-left:0; margin-right:0; border: 1px solid #dcdcdc;">
+                    <div class="col-sm-12">
+
+
+                        <div class="form-group" style="border-bottom: 1px solid #dcdcdc; padding: 10px; background-color: #f2f2f2; font-size: 15px; font-weight: 600;">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span>Customer Type</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="row">
+                                <span class="col-sm-3 right">Customer Type:</span>
+                                <div class="col-sm-4">
+                                    <select id="customerType" class="form-control">
+                                        <option value="0">Retailer</option>
+                                        <option value="1">Whole Seller</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                   
+                        <div class="form-group row-login-credential" style="border-bottom: 1px solid #dcdcdc; padding: 10px; background-color: #f2f2f2; font-size: 15px; font-weight: 600;">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span>Login Credential</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row-login-credential">
+                            <div class="row">
+                                <span class="col-sm-3 right">Username:</span>
+                                <div class="col-sm-4">
+                                    <input type="text" id="customerUsername" ng-model="Username" class="form-control" placeholder="Enter Email Or Mobile" style="height: 30px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row-login-credential">
+                            <div class="row">
+                                <span class="col-sm-3 right">Password:</span>
+                                <div class="col-sm-4">
+                                    <input type="password" id="customerPassword" ng-model="Password" class="form-control" placeholder="Enter Password" style="height: 30px;" />
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group" style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid #dcdcdc; padding: 10px; background-color: #f2f2f2; font-size: 15px; font-weight: 600;">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span>Shipping Address</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <span class="col-sm-3 right">First Name:</span>
+                                <div class="col-sm-4">
+                                    <input type="text" id="customerFirstName" ng-model="FirstName" class="form-control" placeholder="Enter First Name" style="height: 30px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <span class="col-sm-3 right">Last Name:</span>
+                                <div class="col-sm-4">
+                                    <input type="text" id="customerLastName" ng-model="LastName" class="form-control" placeholder="Enter Last Name" style="height: 30px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <span class="col-sm-3 right">Mobile:</span>
+                                <div class="col-sm-4">
+                                    <input type="text" id="customerMobile" ng-model="Mobile" class="form-control" placeholder="Enter Mobile Number" style="height: 30px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <span class="col-sm-3 right">Email:</span>
+                                <div class="col-sm-4">
+                                    <input type="text" id="customerEmail" ng-model="Email" class="form-control" placeholder="Enter Email" style="height: 30px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <span class="col-sm-3 right">Country:</span>
+                                <div class="col-sm-4">
+                                    <input type="text" id="customerCountry" name="customerCountry" placeholder="Enter Country" ng-model="ShipCountry" class="form-control" style="height: 30px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <span class="col-sm-3 right">State:</span>
+                                <div class="col-sm-4">
+                                    <input type="text" id="customerState" name="customerState" ng-model="ShipState" placeholder="Enter State" class="form-control" style="height: 30px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <span class="col-sm-3 right">Postal Code:</span>
+                                <div class="col-sm-4">
+                                    <input type="text" id="customerZipCode" ng-model="ShipZipCode" placeholder="Enter Postal Code" class="form-control" style="height: 30px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <span class="col-sm-3 right">City:</span>
+                                <div class="col-sm-4">
+                                    <input type="text" id="customerCity" ng-model="ShipCity" placeholder="Enter City" class="form-control" style="height: 30px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <span class="col-sm-3 right">Address:</span>
+                                <div class="col-sm-6">
+                                    <textarea id="customerAddress" ng-model="ShipAddress" placeholder="Enter Address (House number, street, town/village)" class="form-control" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="row">
+                                <h3 class="col-sm-3"></h3>
+                                <div class="col-sm-8">
+                                    <button id="btnCustomerRegister" type="submit" ng-click="registerAccount()" class="btn btn-primary">Create Customer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+

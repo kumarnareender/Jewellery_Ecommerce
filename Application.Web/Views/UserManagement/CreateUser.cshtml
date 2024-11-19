@@ -1,0 +1,140 @@
+﻿@{
+    ViewBag.Title = "New User";
+    Layout = "~/Views/Shared/_Layout_Administration.cshtml";
+}
+
+<div class="page-header">
+    <h1>
+        Create User
+    </h1>
+</div>
+
+<form name="myForm" novalidate> 
+    <div ng-controller="userCtrl" class="form-horizontal">
+        <div class="error-message">
+            <ul class="error-list"></ul>
+        </div>
+
+        <div class="alert alert-block alert-success page-message">
+            <button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button>
+            <i class="ace-icon fa fa-check green"></i>
+            <span class="green message-text"></span>
+        </div>
+        <div class="alert alert-danger page-message">
+            <button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button>
+            <i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
+            <span class="message-text"></span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : myForm.FirstName.$invalid && submitted }">
+            <label class="col-sm-2 control-label">First Name</label>
+            <div class="col-sm-5">
+                <input ng-model="FirstName" name="FirstName" class="form-control" required>
+                <span ng-show="myForm.FirstName.$invalid && submitted" class="help-block">First name is required.</span>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : myForm.LastName.$invalid && submitted }">
+            <label class="col-sm-2 control-label">Last Name</label>
+            <div class="col-sm-5">
+                <input ng-model="LastName" name="LastName" class="form-control" required>
+                <span ng-show="myForm.LastName.$invalid && submitted" class="help-block">Last Name is required.</span>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : myForm.Username.$invalid && submitted }">
+            <label class="col-sm-2 control-label">Username</label>
+            <div class="col-sm-5">
+                <input ng-model="Username" name="Username" class="form-control" required>
+                <span ng-show="myForm.Username.$invalid && submitted" class="help-block">Username is required.</span>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : myForm.Password.$invalid && submitted }">
+            <label class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-5">
+                <input ng-model="Password" name="Password" class="form-control" required>
+                <span ng-show="myForm.Password.$invalid && submitted" class="help-block">Password is required.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Code</label>
+            <div class="col-sm-5">
+                <input ng-model="Code" name="Code" class="form-control">                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Roles</label>
+            <div class="col-sm-5">
+                <select multiple ng:model="SelectedRoles" ng:options="role.Id as role.Name for role in roles" style="width:100%;"></select>
+                <br />
+                <span style="font-style:italic;">Note: For multiple selection, please press Ctrl and click role name</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Branches</label>
+            <div class="col-sm-5">
+                <select multiple ng:model="SelectedBranches" ng:options="branch.Id as branch.Name for branch in branchList" style="width:100%;"></select>
+                <br />
+                <span style="font-style:italic;">Note: For multiple selection, please press Ctrl and click branch name</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Permissions</label>
+            <div class="col-sm-5">
+                
+                <ul>
+                    <li>
+                        <input id="ckbProduct" type="checkbox" checked="checked" value="product-m" /> Products (
+                        <input id="ckbAddProduct" type="checkbox" checked="checked" value="addProduct-sm" /> Add Product
+                        <input id="ckbProductList" type="checkbox" checked="checked" value="productList-sm" /> Product List )
+                    </li>
+                    <li>
+                        <input id="ckbPurchase" type="checkbox" checked="checked" value="purchase-m" /> Purchase
+                    </li>
+                    <li>
+                        <input id="ckbCustomer" type="checkbox" checked="checked" value="customer" /> Customer
+                    </li>
+                    <li>
+                        <input id="ckbManageStock" type="checkbox" checked="checked" value="manageStock" /> Manage Stock
+                    </li>
+                    <li>
+                        <input id="ckbOrder" type="checkbox" checked="checked" value="orders" /> Orders
+                    </li>
+                    <li>
+                        <input id="ckbConfiguration" type="checkbox" checked="checked" value="configuration" /> Configurations
+                    </li>
+                    <li>
+                        <input id="ckbReport" type="checkbox" checked="checked" value="report" /> Reports
+                    </li>
+                    <li>
+                        <input id="ckbSetting" type="checkbox" checked="checked" value="setting-sm" /> Settings
+                    </li>
+
+                </ul>
+                
+                
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Active</label>
+            <div class="col-sm-5">
+                <input type="checkbox" ng-model="IsActive" style="width:13px; position:relative; top: 8px;">
+            </div>
+        </div>
+
+                
+        <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+            <div class="col-sm-5">
+                <button id="btnSave" ng-disabled="form.$invalid" type="submit" ng-click="createUser()" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</form>

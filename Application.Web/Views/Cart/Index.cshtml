@@ -1,0 +1,305 @@
+﻿
+@{
+    ViewBag.Title = "Shopping Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<script src="https://js.stripe.com/v3/"></script>*@
+
+<div id="div-place-order" class="container">
+    <div class="mt-4 p-5 bg-primary text-white rounded">
+        <div class="row">
+            <div class="col-md-12" style="text-align:center; padding:20px;">
+                <span style=" font-size: 24px; font-weight: 600;" id="cart-text">Shopping Cart</span>
+            </div>
+        </div>
+    </div>
+    <div class="item-loading">
+        <img src="~/Images/ajax-loader.gif" /> Loading...
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div style="">
+                <div class="shopping-cart-container"></div>
+                <div class="shopping-cart-buttons" style="padding: 10px; background-color: #f2f2f2; border:1px solid #dcdcdc; border-top:0;">
+                    <button id="btnUpdateCart" style="float:right; margin-left:10px;" class="btn btn-primary">Update Cart</button>
+                    &nbsp;<button id="btnClearCart" style="float:right;" class="btn btn-default">Clear Cart</button>
+                    <a href="/Home" class="btn btn-warning btn-continue-shopping" style="background-color: #FA2D18 ">Continue Shopping</a>
+                </div>
+            </div>
+            <div id="customer-address-section" class="customer-address" style="margin-top:20px; background-color: #fff; border:1px solid #dcdcdc;">
+                <div style="border-bottom: 1px solid #dcdcdc; padding: 10px; background-color: #f2f2f2; ">
+                    <span style="font-weight:600;">My Address</span>
+                </div>
+                <div style="padding:20px;">
+
+                    @*<div class="form-group wholesale hide">
+                            <div class="row">
+                                <span class="col-sm-3 right">Order Type:</span>
+                                <div class="col-sm-4">
+                                    <select id="order-type-shopping-cart" class="form-control">
+                                        <option value="Online">Retail Order</option>
+                                        <option value="Wholesale">Wholesale Order</option>
+                                        <option value="Purchase">Purchase Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>*@
+
+                    <div class="form-group" id="customer-div">
+                        <div class="row">
+                            <span class="col-sm-3 right">Customers:</span>
+                            <div class="col-sm-4">
+                                <select id="customers" class=" form-control" style="height: 30px; ">
+                                    <option value="0">Select Customer</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="form-group hide" id="purchase-supplier-div">
+                        <div class="row">
+                            <span class="col-sm-3 right">Suppliers:</span>
+                            <div class="col-sm-4">
+                                <select id="purchase-supplier" class=" form-control" style="height: 30px; ">
+                                    <option value="0">Select Supplier</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <span class="col-sm-3 right">Name:</span>
+                            <div class="col-sm-8">
+                                <input type="text" id="firstName" class="form-control" placeholder="Enter Your Name" style="height: 30px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <span class="col-sm-3 right">Mobile:</span>
+                            <div class="col-sm-8">
+                                <input type="text" id="mobile" class="form-control" placeholder="Enter Your Mobile" style="height: 30px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <span class="col-sm-3 right">City:</span>
+                            <div class="col-sm-4">
+                                <select id="city" class=" form-control" style="height: 30px; ">
+                                    <option value="0">Select City</option>
+                                </select>-->
+                                @*<input type="text" id="city" placeholder="Enter City" class="form-control" style="height: 30px;" />*@
+                            <!--</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <span class="col-sm-3 right">State:</span>
+                            <div class="col-sm-4">
+                                <input type="text" id="state" placeholder="Enter State" class="form-control" style="height: 30px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <span class="col-sm-3 right">Postal Code:</span>
+                            <div class="col-sm-4">
+                                <input type="text" id="zip" disabled placeholder="Enter Postal Code" class="form-control" style="height: 30px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <span class="col-sm-3 right">Address:</span>
+                            <div class="col-sm-8">
+                                <textarea id="address" placeholder="Enter Address (House number, street, town/village)" class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <span class="col-sm-3 right"></span>
+                            <div class="col-sm-8">
+                                <button id="btnUpdateAddress" class="btn btn-primary">Update Address</button>
+                                <span style="margin-left:10px;" id="updateStatus"></span>
+                            </div>
+                        </div>
+                    </div>-->
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div style="padding:10px; background-color:#fff; border:1px solid #dcdcdc; font-size:14px;">
+                <table class="tbl-checkout-total">
+                    <tr>
+                        <td>Subtotal:</td>
+                        <td class="right"><span id="checkout-subTotal"></span></td>
+                    </tr>
+                    @*<tr class="p-order" style="border-bottom: 1px solid #dcdcdc;">
+                        <td>Total Gst <span id="vatPerc"></span> :</td>
+                        <td class="right"><span id="checkout-vatAmount"></span></td>
+                    </tr>*@
+                    <tr class="p-order" style="border-bottom: 1px solid #dcdcdc;">
+                        <td>Shipping Cost:</td>
+                        <td class="right">
+                            <span class="checkout-shippingAmount"></span>
+                            <input type="number" class="form-control hide" id="shippingAmount" value="0" />
+                        </td>
+
+                    </tr>
+
+                    @*<tr class="p-order">
+                        <td>
+                            <div class="input-group">
+                                Have coupon? <input tye="text" class="" id="coupon" style="width:100px" />
+                                <span class="input-group-append">
+                                    <button id="btn-apply-coupon">Apply</button>
+                                </span>
+                            </div>
+                        </td>
+                        <td class="right">
+                            
+                            <span class="discount"></span>
+                            <input id="discount" value="0" hidden />
+                        </td>
+                    </tr>*@
+
+                    <tr style=" color: #97c300; font-size: 20px; font-weight: 700;">
+                        <td>Total:</td>
+                        <td class="right">
+                            <span class="checkout-grandTotal"></span>
+                            <input id="grandTotal" value="0" hidden />
+                        </td>
+                    </tr>
+
+
+                    @*<tr class="shipping-cost-note" style="border-top: 1px solid #dcdcdc;">
+                        <td colspan="2">Note: Shipping charge will be added based on location and weight</td>
+                    </tr>*@
+
+                </table>
+            </div>
+            <div id="div-payment-option" style="border:1px solid #dcdcdc; margin-top:10px; background-color: #fff; font-size:14px;">
+                <div style="border-bottom: 1px solid #dcdcdc; background-color: #f2f2f2; padding: 10px;">
+                    <span style="font-weight:600;">Order Type</span>
+                </div>
+                <div style="padding:10px;">
+                    <div class="form-check">
+                        <label>
+                            <input id="rbPickup" type="radio" class="form-check-input" name="Ordertype" checked="checked" value="Sales" required>
+                            Sales
+                        </label>
+                        <label class="padd-left-10">
+                            <input id="rbDelivery" type="radio" class="form-check-input" name="Ordertype" value="Repair" required>
+                            Repair
+                        </label>
+                        <span ng-show="myForm.condition.$invalid && submitted" class="help-block">Choose product condition</span>
+                    </div>
+                </div>
+            </div>
+            @*<div id="div-payment-option" style="border:1px solid #dcdcdc; margin-top:10px; background-color: #fff; font-size:14px;">
+                <div style="border-bottom: 1px solid #dcdcdc; background-color: #f2f2f2; padding: 10px;">
+                    <span style="font-weight:600;">Payment Options</span>
+                </div>
+                <div style="padding:10px;">
+                    <div class="form-check">
+                        <label>
+                            <input id="rbCod" type="radio" name="paymentBy" class="form-check-input" checked="checked" value="COD" required>
+                            Cash On Delivery
+                        </label>
+                        <label class="padd-left-10">
+                            <input id="rbCard" type="radio" name="paymentBy" class="form-check-input" value="Online" required>
+                            Payment By Card
+                        </label>
+                        <label class="padd-left-10">
+                            <input id="rbCod" type="radio" name="paymentBy" class="form-check-input" value="Credit" required>
+                            Credit
+                        </label>
+                        <span ng-show="myForm.condition.$invalid && submitted" class="help-block">Choose product condition</span>
+                    </div>
+                </div>
+            </div>*@
+
+            <div id="div-payment-option" style="border:1px solid #dcdcdc; margin-top:10px; background-color: #fff; font-size:14px; padding:20px;">
+                <button id="btnPlaceOrder" class="btn btn-primary theme-back-color" style="width:100%;">Place Order</button>
+                <button id="btnPurchaseOrder" class="btn btn-primary theme-back-color hide" style="width:100%;">Place Purchase Order</button>
+                <div id="place-order-loader" style="margin-top:10px; font-size:14px; display:none;">Placing order...</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="div-confirm-order" class="container" style="display:none;">
+    <div class="mt-4 p-5 bg-primary text-white rounded">
+        <div class="row">
+            <div class="col-md-12" style="text-align:center; padding:20px;">
+                <span style=" font-size: 24px; font-weight: 600;">Confirm Your Order</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @*<div class="col-md-12" style="text-align:center; padding-bottom:20px;">
+            <div style="border: 1px solid #dcdcdc; border-bottom:0; background-color: #f2f2f2; padding: 10px;">
+                <span style="font-weight:600; font-size:15px;">You Shipping Address</span>
+                <a id="btnEditAddr" style="float:right; color: blue; cursor:pointer;">Edit Address</a>
+            </div>
+            <div style="background-color: #fff; border-top: 0;">
+                <table class="tbl-address-confirm">
+                    <tr>
+                        <td class="caption-lable" style="width:170px;">Name</td>
+                        <td><span id="showFirstName"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="caption-lable">Mobile</td>
+                        <td><span id="showMobile"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="caption-lable">City</td>
+                        <td><span id="showCity"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="caption-lable">State</td>
+                        <td><span id="showState"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="caption-lable">Postal Code</td>
+                        <td><span id="showZipCode"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="caption-lable">Address</td>
+                        <td><span id="showAddress"></span></td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>*@
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align:center; padding-bottom:20px;">
+            <div id="order-item-list"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align:right;">
+
+            <button id="btnConfirmOrder" class="btn btn-success" style="float: right; margin-left: 10px;">Confirm Order</button>
+
+            <button id="btnBack" class="btn btn-default" style="float: right; margin-left: 10px;">Back</button>&nbsp;&nbsp;
+
+            <div id="order-loader" style="float: right; position: relative; top: 4px; font-size: 14px; font-weight: 600; display: none;">
+                <img src="~/Images/ajax_loader_blue_32.gif" />
+                <span>Order is Processing...</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+

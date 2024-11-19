@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
+
+        html {
+            box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        .column {
+            float: left;
+            width: 23.3%;
+            margin-bottom: 16px;
+            padding: 0 8px;
+            margin-left: 100px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            margin: 8px;
+        }
+
+        .about-section {
+            padding: 50px;
+            text-align: center;
+            /*background-color: white;*/
+            color: black !important;
+        }
+
+        .container {
+            padding: 0 16px;
+        }
+
+            .container::after, .row::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
+
+        .title {
+            color: grey;
+        }
+
+        .button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: black;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+        }
+
+            .button:hover {
+                background-color: #555;
+            }
+
+        .footer-bottom {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="about-section">
+        <h1 style="color: black; margin-bottom:20px"><b>About Us</b></h1>
+
+        <p id="description" style="color: black;"></p>
+        <p id="description1" style="color: black; margin-top:50px;"></p>
+        <p id="description2" style="color: black; margin-top:50px;"></p>
+        @*<p style="color: white;">Some text about who we are and what we do. Resize the browser window to see that this page is responsive by the way. Resize the browser window to see that this page is responsive by the way.Resize the browser window to see that this page is responsive by the way.Resize the browser window to see that this page is responsive by the way.Resize the browser window to see that this page is responsive by the way.Resize the browser window to see that this page is responsive by the way.Resize the browser window to see that this page is responsive by the way.Resize the browser window to see that this page is responsive by the way.Resize the browser window to see that this page is responsive by the way.Resize the browser window to see that this page is responsive by the way.Resize the browser window to see that this page is responsive by the way.Resize the browser window to see that this page is responsive by the way.Resize the browser window to see that this page is responsive by the way.Resize the browser window to see that this page is responsive by the way.</p>*@
+        @*<p style="color: white;">Resize the browser window to see that this page is responsive by the way.</p>*@
+    </div>
+
+    <div class="row" id="images">
+        <div class="column">
+            <div class="card">
+                <img src="http://localhost:5002/ProductImages/Large/63cdec2d-8f86-4f88-a12e-74329595b08d.jpg" alt="Jane" style="width:100%">
+                @*<div class="container">
+                        <h2>Jane Doe</h2>
+                        <p class="title">CEO & Founder</p>
+                        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                        <p>jane@example.com</p>
+                        <p><button class="button">Contact</button></p>
+                    </div>*@
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img src="http://localhost:5002/ProductImages/Large/63cdec2d-8f86-4f88-a12e-74329595b08d.jpg" alt="Mike" style="width:100%">
+                @*<div class="container">
+                        <h2>Mike Ross</h2>
+                        <p class="title">Art Director</p>
+                        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                        <p>mike@example.com</p>
+                        <p><button class="button">Contact</button></p>
+                    </div>*@
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img src="http://localhost:5002/ProductImages/Large/63cdec2d-8f86-4f88-a12e-74329595b08d.jpg" alt="John" style="width:100%">
+                @*<div class="container">
+                        <h2>John Doe</h2>
+                        <p class="title">Designer</p>
+                        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                        <p>john@example.com</p>
+                        <p><button class="button">Contact</button></p>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
